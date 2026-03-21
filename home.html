@@ -25,6 +25,7 @@
         .logo-img { height: 40px; width: auto; margin-right: 12px; }
         .logo-text { font-size: 1.2em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
+        /* MENU HAMBURGUESA */
         .menu-toggle { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
 
         .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
@@ -34,7 +35,6 @@
         section { padding: 80px 20px; }
         .container { max-width: 1100px; margin: 0 auto; }
 
-        /* HERO OPTIMIZADO: Carga imagen pesada por defecto (Escritorio) */
         .hero {
             min-height: 100vh;
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000');
@@ -42,7 +42,6 @@
             display: flex; justify-content: center; align-items: center; text-align: center; color: var(--text-light);
             padding-top: 60px;
         }
-
         .hero h1 { font-size: clamp(2em, 8vw, 3.5em); margin-bottom: 20px; font-weight: 800; line-height: 1.1; }
         .hero h1 span { color: var(--primary); }
         .hero p { font-size: clamp(1em, 4vw, 1.2em); max-width: 750px; margin: 0 auto 40px auto; color: #eee; line-height: 1.6; }
@@ -86,19 +85,14 @@
         .contact h2 { font-size: 2.2em; margin-bottom: 10px; }
         .contact p { font-weight: 600; margin-bottom: 30px; }
         .contact-form { text-align: left; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: none; font-family: inherit; box-sizing: border-box; font-size: 16px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: none; font-family: inherit; box-sizing: border-box; font-size: 16px; /* Evita zoom automático en iOS */ }
         .contact-form textarea { height: 120px; }
         .btn-dark { background: var(--dark-bg); color: white; width: 100%; border: none; cursor: pointer; font-size: 1em; padding: 18px; font-weight: 700; transition: 0.3s; border-radius: 8px; }
 
         footer { background: #111; color: #777; padding: 40px 20px; text-align: center; font-size: 0.85em; }
 
-        /* --- CAMBIOS PARA MÓVIL --- */
+        /* MEDIA QUERIES PARA MÓVIL */
         @media (max-width: 768px) {
-            /* 1. Reducimos el peso de la imagen del Hero en móvil cargando una versión de 800px de ancho */
-            .hero {
-                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800');
-            }
-
             header { padding: 10px 0; }
             .menu-toggle { display: block; }
             
@@ -119,7 +113,7 @@
             .nav-links li { margin: 15px 0; }
             
             .about-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .about-image { order: -1; }
+            .about-image { order: -1; } /* Imagen arriba en móvil */
             
             .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
             .btn { width: 100%; box-sizing: border-box; }
@@ -165,12 +159,7 @@
                 <p>Trotant nació como un espacio para documentar mis pasos por el mundo, uniendo mi pasión por viajar y el marketing digital.</p>
             </div>
             <div class="about-image">
-                <img src="fotos/SaaidTrotant.jpg" 
-                     srcset="fotos/SaaidTrotant-movil.jpg 600w, fotos/SaaidTrotant.jpg 1200w"
-                     sizes="(max-width: 768px) 100vw, 450px"
-                     alt="Saaid Trotant" 
-                     loading="lazy"
-                     style="width: 100%; max-width: 450px; border-radius: 15px; filter: grayscale(20%);">
+                <img src="fotos/SaaidTrotant.jpg" alt="Saaid Trotant" style="width: 100%; max-width: 450px; border-radius: 15px; filter: grayscale(20%);">
             </div>
         </div>
     </section>
@@ -232,6 +221,7 @@
         <div class="container contact-container">
             <h2>¿Hablamos?</h2>
             <p>Cuéntame tu idea y te responderé lo antes posible.</p>
+            
             <form id="miFormulario" class="contact-form" name="contacto-pro" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="contacto-pro">
                 <input type="text" name="nombre" placeholder="Tu nombre" required>
@@ -239,6 +229,7 @@
                 <textarea name="mensaje" placeholder="¿En qué puedo ayudarte?" required></textarea>
                 <button type="submit" class="btn btn-dark">ENVIAR MENSAJE</button>
             </form>
+
             <div id="form-mensaje-exito" style="display:none; margin-top: 20px; font-weight: bold;">¡Enviado con éxito!</div>
         </div>
     </section>
@@ -248,17 +239,29 @@
     </footer>
 
     <script>
+        // Lógica para el menú móvil
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
-        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => { navList.classList.remove('active'); });
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
         });
+
+        // Cerrar menú al hacer clic en un enlace (para móviles)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Formulario
         const formulario = document.getElementById('miFormulario');
         const mensajeExito = document.getElementById('form-mensaje-exito');
+
         formulario.onsubmit = e => {
             e.preventDefault();
             const formData = new FormData(formulario);
+            
             fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -269,7 +272,9 @@
                 mensajeExito.style.display = 'block';
                 setTimeout(() => { mensajeExito.style.display = 'none'; }, 5000);
             })
-            .catch((error) => { alert("Error al enviar: " + error); });
+            .catch((error) => {
+                alert("Error al enviar: " + error);
+            });
         };
     </script>
 </body>
