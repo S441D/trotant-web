@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TROTANT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -25,7 +27,6 @@
         .logo-img { height: 40px; width: auto; margin-right: 12px; }
         .logo-text { font-size: 1.2em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* MENU HAMBURGUESA */
         .menu-toggle { display: none; font-size: 1.5rem; color: white; cursor: pointer; }
 
         .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
@@ -35,24 +36,27 @@
         section { padding: 80px 20px; }
         .container { max-width: 1100px; margin: 0 auto; }
 
+        /* Optimización del Hero: Eliminamos el background-image pesado de CSS */
         .hero {
+            position: relative;
             min-height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000');
-            background-size: cover; background-position: center;
             display: flex; justify-content: center; align-items: center; text-align: center; color: var(--text-light);
-            padding-top: 60px;
+            overflow: hidden;
         }
-        .hero h1 { font-size: clamp(2em, 8vw, 3.5em); margin-bottom: 20px; font-weight: 800; line-height: 1.1; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: clamp(1em, 4vw, 1.2em); max-width: 750px; margin: 0 auto 40px auto; color: #eee; line-height: 1.6; }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
 
-        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .hero h1 { font-size: clamp(2.2em, 8vw, 3.5em); margin-bottom: 20px; font-weight: 800; line-height: 1.1; position: relative; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: clamp(1em, 4vw, 1.2em); max-width: 750px; margin: 0 auto 40px auto; color: #eee; line-height: 1.6; position: relative; }
+
+        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; position: relative; }
 
         .btn { padding: 16px 30px; font-weight: 700; text-decoration: none; border-radius: 50px; transition: 0.3s; display: inline-block; font-size: 0.85em; text-transform: uppercase; border: none; cursor: pointer; text-align: center; }
         .btn-primary { background-color: var(--primary); color: var(--dark-bg); border: 2px solid var(--primary); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(29, 233, 182, 0.3); }
         .btn-secondary { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
-        .btn-secondary:hover { background: rgba(29, 233, 182, 0.1); transform: translateY(-3px); }
 
         .about { background-color: var(--dark-section); color: white; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
@@ -63,62 +67,32 @@
         .blog-list h2 { text-align: center; font-size: 2.2em; margin-bottom: 40px; }
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .blog-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; position: relative; }
-        .blog-card:hover { transform: translateY(-10px); }
-        .blog-img { height: 220px; background-size: cover; background-position: center; }
-        .badge { position: absolute; top: 15px; right: 15px; background: var(--primary); color: var(--dark-bg); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.7em; text-transform: uppercase; }
+        .blog-img-container { height: 220px; overflow: hidden; }
+        .blog-img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .blog-card:hover img { transform: scale(1.1); }
+        
+        .badge { position: absolute; top: 15px; right: 15px; background: var(--primary); color: var(--dark-bg); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.7em; text-transform: uppercase; z-index: 10; }
         .blog-content { padding: 25px; }
-        .blog-content h3 { margin: 0 0 15px 0; font-size: 1.3em; }
-        .blog-content p { color: #666; font-size: 0.95em; line-height: 1.5; margin-bottom: 20px; }
 
         .services { background-color: #f9f9f9; text-align: center; }
-        .services h2 { font-size: 2.2em; margin-bottom: 10px; }
-        .services-sub { font-weight: 600; color: #777; margin-bottom: 40px; padding: 0 10px; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-        .service-item { background: white; padding: 35px 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; }
-        .service-item:hover { transform: translateY(-5px); border-bottom: 4px solid var(--primary); }
-        .service-item i { font-size: 2.2em; color: var(--primary); margin-bottom: 20px; }
-        .service-item h3 { margin-bottom: 15px; font-size: 1.1em; font-weight: 700; }
-        .service-item p { color: #666; font-size: 0.85em; line-height: 1.6; }
-
+        /* Mejora de contraste para Accesibilidad */
+        .services-sub { font-weight: 600; color: #555; margin-bottom: 40px; padding: 0 10px; }
+        
         .contact { background-color: var(--primary); color: var(--dark-bg); text-align: center; }
-        .contact-container { max-width: 600px; margin: 0 auto; }
-        .contact h2 { font-size: 2.2em; margin-bottom: 10px; }
-        .contact p { font-weight: 600; margin-bottom: 30px; }
-        .contact-form { text-align: left; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: none; font-family: inherit; box-sizing: border-box; font-size: 16px; /* Evita zoom automático en iOS */ }
-        .contact-form textarea { height: 120px; }
-        .btn-dark { background: var(--dark-bg); color: white; width: 100%; border: none; cursor: pointer; font-size: 1em; padding: 18px; font-weight: 700; transition: 0.3s; border-radius: 8px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: none; font-size: 16px; }
 
-        footer { background: #111; color: #777; padding: 40px 20px; text-align: center; font-size: 0.85em; }
+        footer { background: #111; color: #bbb; padding: 40px 20px; text-align: center; font-size: 0.85em; }
 
-        /* MEDIA QUERIES PARA MÓVIL */
         @media (max-width: 768px) {
-            header { padding: 10px 0; }
             .menu-toggle { display: block; }
-            
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--dark-bg);
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--dark-bg); padding: 20px 0; text-align: center;
             }
-
             .nav-links.active { display: flex; }
-            .nav-links li { margin: 15px 0; }
-            
-            .about-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .about-image { order: -1; } /* Imagen arriba en móvil */
-            
+            .about-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-image { order: -1; }
             .hero-btns { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
-            .btn { width: 100%; box-sizing: border-box; }
-            
-            section { padding: 60px 20px; }
         }
     </style>
 </head>
@@ -127,12 +101,15 @@
     <header>
         <nav class="nav-container">
             <a href="#" class="logo-container">
-                <img src="fotos/logo.png" alt="Logo" class="logo-img">
+                <img src="fotos/logo.png" 
+                     srcset="fotos/logo-mobile.png 100w, fotos/logo.png 500w" 
+                     sizes="40px"
+                     alt="Logo Trotant" 
+                     class="logo-img" 
+                     width="40" height="40">
                 <span class="logo-text">Trotant</span>
             </a>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="nav-list">
                 <li><a href="#diario">DIARIO DE VIAJE</a></li>
                 <li><a href="#marketing">MARKETING TURÍSTICO</a></li>
@@ -141,141 +118,83 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Explorar, Escribir, <span>Conectar.</span></h1>
-            <p>Viajo por el mundo compartiendo historias reales y ayudo a marcas turísticas a conectar con su audiencia.</p>
-            <div class="hero-btns">
-                <a href="#diario" class="btn btn-primary">Leer el Diario</a>
-                <a href="#marketing" class="btn btn-secondary">Servicios Pro</a>
+    <main>
+        <section class="hero">
+            <div class="hero-bg">
+                <picture>
+                    <source media="(max-width: 600px)" srcset="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=60&w=600">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=2000" alt="Fondo de viajes">
+                </picture>
             </div>
-        </div>
-    </section>
+            <div class="container">
+                <h1>Explorar, Escribir, <span>Conectar.</span></h1>
+                <p>Viajo por el mundo compartiendo historias reales y ayudo a marcas turísticas a conectar con su audiencia.</p>
+                <div class="hero-btns">
+                    <a href="#diario" class="btn btn-primary">Leer el Diario</a>
+                    <a href="#marketing" class="btn btn-secondary">Servicios Pro</a>
+                </div>
+            </div>
+        </section>
 
-    <section id="sobre-mi" class="about">
-        <div class="container about-grid">
-            <div class="about-text">
-                <h2>Hola, soy Saaid</h2>
-                <p>Trotant nació como un espacio para documentar mis pasos por el mundo, uniendo mi pasión por viajar y el marketing digital.</p>
+        <section id="sobre-mi" class="about">
+            <div class="container about-grid">
+                <div class="about-text">
+                    <h2>Hola, soy Saaid</h2>
+                    <p>Trotant nació como un espacio para documentar mis pasos por el mundo, uniendo mi pasión por viajar y el marketing digital.</p>
+                </div>
+                <div class="about-image">
+                    <img src="fotos/SaaidTrotant.jpg" 
+                         srcset="fotos/SaaidTrotant-mobile.jpg 450w, fotos/SaaidTrotant.jpg 1000w"
+                         sizes="(max-width: 768px) 100vw, 450px"
+                         alt="Saaid Trotant" 
+                         loading="lazy"
+                         width="450" height="600"
+                         style="width: 100%; max-width: 450px; border-radius: 15px; height: auto;">
+                </div>
             </div>
-            <div class="about-image">
-                <img src="fotos/SaaidTrotant.jpg" alt="Saaid Trotant" style="width: 100%; max-width: 450px; border-radius: 15px; filter: grayscale(20%);">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="diario" class="blog-list">
-        <div class="container">
-            <h2>Mi Diario de Abordo</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <span class="badge">Próximamente</span>
-                    <div class="blog-img" style="background-image: url('fotos/Amsterdam.jpg');"></div>
-                    <div class="blog-content">
-                        <h3>Amsterdam</h3>
-                        <p>Descubriendo los canales y la magia de la capital de los Países Bajos.</p>
+        <section id="diario" class="blog-list">
+            <div class="container">
+                <h2>Mi Diario de Abordo</h2>
+                <div class="blog-grid">
+                    <div class="blog-card">
+                        <span class="badge">Próximamente</span>
+                        <div class="blog-img-container">
+                            <img src="fotos/Amsterdam.jpg" loading="lazy" alt="Canales de Amsterdam" width="350" height="220">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Amsterdam</h3>
+                            <p>Descubriendo los canales y la magia de los Países Bajos.</p>
+                        </div>
+                    </div>
+                    <div class="blog-card">
+                        <span class="badge">Próximamente</span>
+                        <div class="blog-img-container">
+                            <img src="fotos/Malta.jpg" loading="lazy" alt="Costa de Malta" width="350" height="220">
+                        </div>
+                        <div class="blog-content">
+                            <h3>Malta</h3>
+                            <p>Historia caballeresca y aguas cristalinas en el Mediterráneo.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="blog-card">
-                    <span class="badge">Próximamente</span>
-                    <div class="blog-img" style="background-image: url('fotos/Malta.jpg');"></div>
-                    <div class="blog-content">
-                        <h3>Malta</h3>
-                        <p>Historia caballeresca, aguas cristalinas y atardeceres en el Mediterráneo.</p>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="marketing" class="services">
-        <div class="container">
-            <h2>Digital Marketing & Tourism</h2>
-            <p class="services-sub">Si te gusta cómo comunico mis viajes, imagina lo que puedo hacer por tu marca.</p>
-            <div class="services-grid">
-                <div class="service-item">
-                    <i class="fas fa-search"></i>
-                    <h3>SEO & SEM</h3>
-                    <p>Posicionamiento orgánico y campañas para destinos turísticos.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-hashtag"></i>
-                    <h3>Social Media</h3>
-                    <p>Gestión de comunidades viajeras y contenido visual.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-pen-nib"></i>
-                    <h3>Redacción & Blog</h3>
-                    <p>Copywriting profesional para blogs de viajes y webs.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Webs Turísticas</h3>
-                    <p>Diseño enfocado a la conversión de viajeros.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="contact">
-        <div class="container contact-container">
-            <h2>¿Hablamos?</h2>
-            <p>Cuéntame tu idea y te responderé lo antes posible.</p>
-            
-            <form id="miFormulario" class="contact-form" name="contacto-pro" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="contacto-pro">
-                <input type="text" name="nombre" placeholder="Tu nombre" required>
-                <input type="email" name="email" placeholder="Tu correo electrónico" required>
-                <textarea name="mensaje" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                <button type="submit" class="btn btn-dark">ENVIAR MENSAJE</button>
-            </form>
-
-            <div id="form-mensaje-exito" style="display:none; margin-top: 20px; font-weight: bold;">¡Enviado con éxito!</div>
-        </div>
-    </section>
+        </main>
 
     <footer>
         <p>&copy; 2026 TROTANT por Saaid.</p>
     </footer>
 
     <script>
-        // Lógica para el menú móvil
         const menuToggle = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
-
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer clic en un enlace (para móviles)
+        menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
+            link.addEventListener('click', () => { navList.classList.remove('active'); });
         });
-
-        // Formulario
-        const formulario = document.getElementById('miFormulario');
-        const mensajeExito = document.getElementById('form-mensaje-exito');
-
-        formulario.onsubmit = e => {
-            e.preventDefault();
-            const formData = new FormData(formulario);
-            
-            fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString(),
-            })
-            .then(() => {
-                formulario.reset();
-                mensajeExito.style.display = 'block';
-                setTimeout(() => { mensajeExito.style.display = 'none'; }, 5000);
-            })
-            .catch((error) => {
-                alert("Error al enviar: " + error);
-            });
-        };
     </script>
 </body>
 </html>
