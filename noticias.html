@@ -123,7 +123,7 @@
 
         .article-featured-visual {
             background: var(--dark-3);
-            min-height: 420px;
+            min-height: 260px;
             position: relative;
             overflow: hidden;
             display: flex; align-items: flex-end;
@@ -363,20 +363,28 @@
         </div>
     </div>
 
-    <!-- ESTADO VACÍO -->
-    <div class="empty-state">
-        <div class="empty-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    <!-- ARTÍCULO 02 — Próximamente -->
+    <div class="article-featured" aria-label="Próximo artículo" style="margin-top: 2px;">
+        <div class="article-featured-visual">
+            <div class="coming-label">
+                <div class="coming-dot" aria-hidden="true"></div>
+                <span>Próximamente</span>
+            </div>
         </div>
-        <h3>Esto está empezando.</h3>
-        <p>El primer artículo está en proceso. Mientras tanto, puedes apuntarte para recibir un aviso cuando se publique o ver los servicios directamente.</p>
-        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-            <a href="index.html#contacto" style="display:inline-flex; align-items:center; gap:8px; padding:13px 26px; background:var(--accent); color:var(--dark); border-radius:50px; font-family:var(--sans); font-weight:700; font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; transition:all 0.2s;">
-                Ver servicios
-            </a>
-            <a href="index.html" style="display:inline-flex; align-items:center; gap:8px; padding:13px 26px; background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.15); border-radius:50px; font-family:var(--sans); font-weight:600; font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; transition:all 0.2s;">
-                Volver al inicio
-            </a>
+        <div class="article-featured-content">
+            <div class="meta-top">
+                <div class="article-cat">Web · Conversión</div>
+                <div class="article-num" aria-hidden="true">02</div>
+            </div>
+            <h2>La web de tu hotel pierde reservas directas: 7 señales que lo confirman (y cómo solucionarlas sin rediseño completo)</h2>
+            <p class="excerpt">Si el viajero aterriza en tu web y acaba reservando en Booking, hay un problema de conversión. Repaso los 7 fallos más frecuentes en webs de alojamientos turísticos y cómo solucionarlos sin tirar todo lo que tienes.</p>
+            <div class="article-meta-bottom">
+                <span class="article-date">Publicación prevista · Verano 2026</span>
+                <span class="read-btn" aria-label="Artículo no disponible aún" style="cursor:not-allowed;">
+                    Próximamente
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+            </div>
         </div>
     </div>
 
