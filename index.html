@@ -275,30 +275,7 @@
         .noticia-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; flex: 1; font-weight: 300; }
         .noticia-card a { color: var(--text-muted); font-size: 0.78rem; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
 
-        /* ─── BLOG DE VIAJES ─── */
-        .viajes { background: var(--dark-2); padding: 100px 40px; }
-        .viajes .container { max-width: 1100px; margin: 0 auto; }
-        .viajes-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2px; border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
-        .viaje-card {
-            position: relative; overflow: hidden; min-height: 360px;
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
-        .viaje-card-bg {
-            position: absolute; inset: 0; background-size: cover; background-position: center;
-            transition: transform 0.5s ease;
-        }
-        .viaje-card:hover .viaje-card-bg { transform: scale(1.04); }
-        .viaje-card-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%);
-        }
-        .viaje-card-content { position: relative; padding: 32px; }
-        .viaje-card-content .dest-tag { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-        .viaje-card-content h3 { font-family: var(--serif); font-size: 1.8rem; line-height: 1.1; margin-bottom: 10px; }
-        .viaje-card-content p { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 300; }
-        .viaje-coming { background: var(--dark-3); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; text-align: center; padding: 32px; }
-        .viaje-coming svg { opacity: 0.4; }
-        .viaje-coming p { color: var(--text-muted); font-size: 0.85rem; }
+
 
         /* ─── CONTACTO ─── */
         .contacto { background: var(--dark); padding: 100px 40px; }
@@ -364,12 +341,10 @@
             nav ul a.cta-nav { text-align: center; }
             .hero { padding: 100px 24px 80px; }
             .hero h1 { font-size: clamp(2.2rem, 9vw, 3.8rem); }
-            .dolor, .marketing, .autoridad, .noticias, .viajes, .contacto { padding: 70px 24px; }
+            .dolor, .marketing, .autoridad, .noticias, .contacto { padding: 70px 24px; }
             .dolor-grid, .service-panel.active, .autoridad-grid { grid-template-columns: 1fr; }
             .service-card.big { grid-column: auto; }
-            .viajes-grid { grid-template-columns: 1fr; }
-            .viaje-card { min-height: 300px; }
-            .viaje-coming { min-height: 180px; }
+
             .contacto .container { grid-template-columns: 1fr; gap: 48px; }
             footer { flex-direction: column; text-align: center; padding: 32px 24px; }
         }
@@ -396,7 +371,7 @@
         <ul id="navList" role="list">
             <li><a href="#marketing">Marketing Digital</a></li>
             <li><a href="noticias.html">Noticias</a></li>
-            <li><a href="#blog-viajes">Blog de Viajes</a></li>
+
             <li><a href="#contacto" class="cta-nav">Contratar →</a></li>
         </ul>
     </nav>
@@ -549,10 +524,10 @@
                 <a href="#noticias">Leer el artículo →</a>
             </div>
             <div class="autoridad-card">
-                <div class="tipo-tag">Blog · Diario de Viaje</div>
-                <h3>Malta: el peso de la historia en cada piedra caliza amarilla</h3>
-                <p>No vine a tachar Malta de una lista. Vine a entender por qué un archipiélago de 316 km² acumula más capas culturales que ciudades tres veces más grandes. Esto es lo que encontré cuando apagué el móvil.</p>
-                <a href="#blog-viajes">Leer el relato →</a>
+                <div class="tipo-tag">Trabaja conmigo</div>
+                <h3>¿Tu alojamiento depende demasiado de Booking o Airbnb?</h3>
+                <p>Si más del 60% de tus reservas llegan por OTAs, estás pagando entre un 15% y un 30% de comisión por cada cliente. La reserva directa existe. Solo necesita una campaña bien construida y una web que convierta.</p>
+                <a href="#contacto">Cuéntame tu situación →</a>
             </div>
         </div>
     </div>
@@ -588,42 +563,7 @@
     </div>
 </section>
 
-<!-- ══════ BLOG DE VIAJES ══════ -->
-<section class="viajes" id="blog-viajes">
-    <div class="container">
-        <div class="section-header">
-            <p class="label-section">Blog · Diario de Viaje</p>
-            <h2>Viajar despacio. Escribir lo que importa.</h2>
-            <p>Sin itinerarios de 10 países en 10 días. Solo relatos de lo que pasa cuando te quedas un poco más de lo previsto.</p>
-        </div>
-        <div class="viajes-grid">
-            <article class="viaje-card">
-                <div class="viaje-card-bg" style="background-image: url('fotos/Malta.webp');" role="img" aria-label="Vista de Malta con arquitectura mediterránea"></div>
-                <div class="viaje-card-overlay" aria-hidden="true"></div>
-                <div class="viaje-card-content">
-                    <div class="dest-tag">Malta · Mediterráneo</div>
-                    <h3>El peso de la historia<br>en piedra caliza amarilla</h3>
-                    <p>Próximamente · Relato completo</p>
-                </div>
-            </article>
-            <div style="display: flex; flex-direction: column; gap: 2px;">
-                <article class="viaje-card" style="flex: 1;">
-                    <div class="viaje-card-bg" style="background-image: url('fotos/Amsterdam.webp');" role="img" aria-label="Canal de Ámsterdam al amanecer"></div>
-                    <div class="viaje-card-overlay" aria-hidden="true"></div>
-                    <div class="viaje-card-content">
-                        <div class="dest-tag">Ámsterdam · Países Bajos</div>
-                        <h3>Los canales a las 7 de la mañana</h3>
-                        <p>Próximamente</p>
-                    </div>
-                </article>
-                <div class="viaje-coming">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <p>Próximo destino sin confirmar.<br>Ese es el plan.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <!-- ══════ BLOQUE 5: CONTACTO ══════ -->
 <section class="contacto" id="contacto">
