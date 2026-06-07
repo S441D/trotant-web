@@ -352,7 +352,7 @@
         }
         .solution-box p { color: rgba(240,237,232,0.82); font-size: 0.9rem; line-height: 1.65; margin: 0; }
 
-        /* CTA inline - Se fuerza el color !important para evitar conflicto con los links del artículo */
+        /* CTA inline */
         .inline-cta {
             background: var(--dark-3); border-radius: var(--radius);
             padding: 36px 40px; margin: 48px 0;
@@ -364,7 +364,7 @@
         .inline-cta-text p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; margin: 0; }
         .inline-cta-btn {
             display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
-            padding: 13px 24px; background: var(--accent); color: var(--dark) !important;
+            padding: 13px 24px; background: var(--accent); color: var(--dark);
             border-radius: 50px; font-family: var(--sans); font-weight: 700;
             font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
             text-decoration: none; transition: all 0.2s; white-space: nowrap;
@@ -617,7 +617,7 @@
     <!-- CONTENIDO -->
     <article class="article-body" id="articleBody">
 
-        <p>En España, <strong>el 34,3% de las nights de alojamiento se reservaron de forma directa en 2023</strong>. Un año antes eran el 41,4%. La tendencia es clara: los hoteles rurales ceden terreno a las OTA año tras año, pagan comisiones de entre el 15% y el 30% por cada reserva, y encima siguen sin entender por qué sus campañas de Google Ads «no funcionan».</p>
+        <p>En España, <strong>el 34,3% de las noches de alojamiento se reservaron de forma directa en 2023</strong>. Un año antes eran el 41,4%. La tendencia es clara: los hoteles rurales ceden terreno a las OTA año tras año, pagan comisiones de entre el 15% y el 30% por cada reserva, y encima siguen sin entender por qué sus campañas de Google Ads «no funcionan».</p>
 
         <p>La respuesta casi siempre es la misma: <strong>no es que Google Ads no funcione. Es que la campaña está mal construida desde el primer clic.</strong></p>
 
@@ -644,69 +644,323 @@
         <div class="error-block" data-num="01">
             <div class="error-label">Error crítico · Keywords</div>
             <h3>Tu anuncio aparece para búsquedas que nunca van a reservar</h3>
-            <p>La concordancia amplia es la forma más rápida de agotar tu presupuesto en clics sin valor. Si no filtras tus palabras clave mediante una lista de términos negativos estricta y actualizada, acabarás pagando por usuarios que buscan opciones públicas, actividades gratuitas o competidores directos en otras regiones.</p>
+            <p>La concordancia amplia es la configuración por defecto de Google Ads. Si tu keyword es «casa rural Segovia», Google puede mostrar tu anuncio para «casas rurales abandonadas Segovia», «trabajos en casa rural» o «fotos casa rural». Tres clics. Tres euros perdidos. Multiplicado por miles de búsquedas al mes.</p>
+        </div>
+
+        <p>La concordancia amplia tiene su utilidad en cuentas con mucho histórico de datos y presupuestos altos donde el algoritmo ya sabe qué convierte. Para un hotel rural con presupuesto ajustado y poca historia de conversiones, es una trampa.</p>
+
+        <p>Lo más peligroso no es lo que se ve, sino lo que no se mira: el <strong>informe de términos de búsqueda</strong>. La mayoría de los propietarios de alojamientos que gestionan sus propias campañas no saben que existe. Ese informe muestra exactamente qué escribió el usuario en Google antes de hacer clic en tu anuncio. Lo que encuentras ahí suele ser perturbador.</p>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Empieza con concordancia de frase o exacta para tus keywords principales. Construye desde el primer día una lista de palabras clave negativas: «gratis», «barato», «trabajo», «alquiler largo plazo», «abandonada», «fotos», «recetas». Revisa el informe de términos de búsqueda cada semana durante el primer mes y añade negativos sin piedad. Esa disciplina inicial vale más que cualquier ajuste de puja.</p>
+        </div>
+
+        <!-- ERROR 2 -->
+        <h2 id="error-2">Error 2. No tener en cuenta la estacionalidad en la estructura de la campaña</h2>
+
+        <div class="error-block" data-num="02">
+            <div class="error-label">Error de estrategia · Planificación</div>
+            <h3>Mismo presupuesto en enero que en agosto</h3>
+            <p>Un hotel rural no es una tienda online. Tu demanda no es plana. Tiene picos brutales en Semana Santa, agosto y puentes, y valles profundos en febrero o noviembre. Una campaña configurada con presupuesto fijo durante todo el año está, por definición, mal optimizada: gasta de más cuando la demanda ya se llena sola y de menos cuando más necesita el empujón.</p>
+        </div>
+
+        <p>El turismo rural en España tiene además una particularidad que pocas campañas respetan: <strong>hay dos tipos de buscador con intenciones completamente distintas</strong>. El que busca con ocho meses de antelación («escapada rural Pirineos verano») y el que busca el jueves para el fin de semana siguiente («casa rural libre este finde»). Cada uno necesita un mensaje diferente, una landing diferente y una puja diferente.</p>
+
+        <table class="compare-table" aria-label="Comparativa de tipología de buscador turístico">
+            <thead>
+                <tr>
+                    <th>Tipología</th>
+                    <th>Planificador</th>
+                    <th>Impulsivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Antelación</td>
+                    <td>2–8 meses</td>
+                    <td>0–7 días</td>
+                </tr>
+                <tr>
+                    <td>Intención de búsqueda</td>
+                    <td>Informacional + transaccional</td>
+                    <td>Puramente transaccional</td>
+                </tr>
+                <tr>
+                    <td>Keyword ejemplo</td>
+                    <td>«casa rural Gredos verano 2026»</td>
+                    <td>«casa rural disponible este finde»</td>
+                </tr>
+                <tr>
+                    <td>Mensaje del anuncio</td>
+                    <td>Descripción de experiencia, galería</td>
+                    <td>Disponibilidad, confirmación inmediata</td>
+                </tr>
+                <tr>
+                    <td>CPC habitual</td>
+                    <td class="good">Bajo (menos competencia)</td>
+                    <td class="bad">Alto (mucha competencia)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Estructura campañas separadas para cada tipología de buscador. Sube las pujas manualmente o con ajustes de estacionalidad de Google 6–8 semanas antes de cada temporada alta. Reduce presupuesto o pausa campañas en temporada baja si tienes ocupación garantizada por otros canales. Y activa siempre las campañas antes de que la demanda llegue, nunca cuando ya está aquí.</p>
+        </div>
+
+        <!-- PULLQUOTE -->
+        <div class="pullquote">
+            <p>«Activar una campaña de Google Ads el primer día de agosto para captar reservas de agosto es como abrir un paraguas cuando ya estás empapado.»</p>
+        </div>
+
+        <!-- ERROR 3 -->
+        <h2 id="error-3">Error 3. Mandar el tráfico a la página de inicio</h2>
+
+        <div class="error-block" data-num="03">
+            <div class="error-label">Error de conversión · Landing page</div>
+            <h3>El usuario llega, se pierde y se va a Booking</h3>
+            <p>Este es el error más caro de todos porque no lo verás en el informe de Google Ads. El anuncio tiene buen CTR, los clics llegan, el presupuesto se gasta. Pero el usuario aterriza en la home de tu web, no encuentra un botón de reserva claro, se distrae con el menú de navegación y diez segundos después está buscando tu alojamiento en Booking.com, donde sí encuentra el proceso de reserva fácil. Le acabas de pagar el clic a Google para que reserve por Booking.</p>
+        </div>
+
+        <p>Una <strong>landing page específica para cada campaña</strong> puede multiplicar la tasa de conversión de forma dramática. El concepto es simple: el mensaje del anuncio debe coincidir exactamente con lo que el usuario ve al llegar. Si el anuncio dice «Casa rural con piscina en la Sierra de Guadarrama — Reserva directa con descuento», la landing debe tener exactamente eso encima del pliegue, sin menú, sin distracciones, con un botón de reserva bien visible y un proceso de tres pasos máximo.</p>
+
+        <ul class="check-list" aria-label="Elementos esenciales de una landing page que convierte">
+            <li>Título que repite el beneficio exacto del anuncio (message match)</li>
+            <li>Una foto de calidad real como imagen principal, no de stock</li>
+            <li>Botón de reserva visible sin hacer scroll, con texto de acción claro</li>
+            <li>Precio visible desde el primer momento, sin obligar a buscar disponibilidad</li>
+            <li>Dos o tres elementos de confianza: reseñas reales, certificaciones, política clara de cancelación</li>
+            <li>Sin menú de navegación completo — el usuario debe tener un único camino: reservar</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Crea páginas de destino específicas para tus campañas principales. No hace falta un rediseño completo de la web: puede ser una página nueva dentro de tu WordPress con Elementor, sin menú de navegación, con un único objetivo. Usa el parámetro de URL para conectar el anuncio a la landing y mide el porcentaje de conversión de cada una por separado en Google Analytics 4.</p>
+        </div>
+
+        <!-- CTA INLINE -->
+        <div class="inline-cta">
+            <div class="inline-cta-text">
+                <h4>¿Tu campaña tiene alguno de estos errores?</h4>
+                <p>Hago auditorías de cuentas de Google Ads para alojamientos turísticos. Te digo exactamente qué está fallando y cómo arreglarlo, en formato ejecutivo, en 7 días.</p>
+            </div>
+            <a href="../index.html#contacto" class="inline-cta-btn">
+                Solicitar auditoría
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+
+        <!-- ERROR 4 -->
+        <h2 id="error-4">Error 4. No configurar el seguimiento de conversiones</h2>
+
+        <div class="error-block" data-num="04">
+            <div class="error-label">Error de medición · Analytics</div>
+            <h3>Optimizas a ciegas. Google también.</h3>
+            <p>Si Google Ads no sabe qué clics generan reservas, no puede optimizar las pujas hacia los usuarios que más probabilidades tienen de reservar. Estás pagando a ciegas y el algoritmo también trabaja a ciegas. El resultado es que el presupuesto se distribuye de forma aleatoria entre clics que convierten y clics que no, sin ningún aprendizaje real acumulado.</p>
+        </div>
+
+        <p>En el sector turístico, definir una conversión tiene cierta complejidad porque el proceso de reserva no siempre termina en la web. Puede terminar en una llamada telefónica, en un formulario, en un motor de reservas externo o en un WhatsApp. Cada uno de esos puntos debe estar medido.</p>
+
+        <ul class="check-list" aria-label="Conversiones que debes medir en un alojamiento turístico">
+            <li>Clic en botón de reserva (micro-conversión)</li>
+            <li>Llegada a página de confirmación en el motor de reservas (macro-conversión)</li>
+            <li>Llamada telefónica desde el anuncio o la web (Google Ads tiene seguimiento nativo)</li>
+            <li>Envío de formulario de contacto</li>
+            <li>Clic en WhatsApp o enlace de contacto directo</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Configura Google Analytics 4 correctamente y vincúlalo a Google Ads. Define eventos de conversión para cada uno de los puntos de contacto anteriores. Si tu motor de reservas es externo (Cloudbeds, HiRUM, Beds24), configura el seguimiento entre dominios para no perder la atribución. Sin datos de conversión reales, ninguna estrategia de puja automática puede funcionar bien.</p>
+        </div>
+
+        <!-- ERROR 5 -->
+        <h2 id="error-5">Error 5. Competir por keywords genéricas contra Booking.com y Expedia</h2>
+
+        <div class="error-block" data-num="05">
+            <div class="error-label">Error de estrategia · Competencia</div>
+            <h3>Una batalla que no puedes ganar con un presupuesto normal</h3>
+            <p>Booking.com gastó 4.700 millones de dólares en marketing en 2023. Expedia, 5.300 millones. Si tu estrategia de Google Ads es pujar por «hoteles rurales España» o «casas rurales con piscina», estás en la misma subasta que estos gigantes. Ellos siempre van a ganar en posición. Y cuando pierdes la subasta, pagas más por cada clic que sí consigues.</p>
+        </div>
+
+        <p>La solución no es rendirse. Es jugar en un terreno donde los gigantes no pueden ganarte: <strong>la hiperspecificidad local y la intención de marca</strong>.</p>
+
+        <p>Una OTA nunca va a crear una campaña específica para «casa rural con chimenea y bañera en la Sierra Norte de Madrid». Tú sí puedes. Y ese usuario que busca algo tan específico tiene una intención de reserva altísima y muy poca competencia publicitaria. El CPC es bajo, la conversión es alta y estás capturando a alguien que sabe exactamente lo que quiere.</p>
+
+        <ul class="check-list" aria-label="Tipos de keywords donde puedes ganar a las OTAs">
+            <li>Keywords de marca propia: «[nombre del alojamiento] reservas», «[nombre] disponibilidad»</li>
+            <li>Keywords hiperlocales: «casa rural [municipio exacto]», «alojamiento rural [valle/sierra específica]»</li>
+            <li>Keywords de experiencia concreta: «casa rural con jacuzzi exterior [provincia]», «turismo rural perros bienvenidos [zona]»</li>
+            <li>Keywords de fecha específica: «casa rural disponible Semana Santa [año]», «puente diciembre casa rural [región]»</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Empieza siempre por keywords de marca propia. Si alguien busca el nombre de tu alojamiento y aparece Booking antes que tú, estás regalando una reserva directa. Después, construye una lista de keywords long-tail hiperlocales y de experiencia específica donde la competencia sea manejable. El volumen de búsqueda será menor, pero el coste por reserva conseguida será mucho más bajo.</p>
+        </div>
+
+        <!-- PULLQUOTE 2 -->
+        <div class="pullquote">
+            <p>«Ganar a Booking en su propio terreno es imposible con un presupuesto normal. Ganarle en tu terreno —tu nombre, tu ubicación exacta, tu experiencia concreta— es la estrategia correcta.»</p>
+        </div>
+
+        <!-- CONCLUSIÓN -->
+        <div class="conclusion-box" id="conclusion">
+            <h2>¿Qué hacer ahora mismo?</h2>
+            <p>Si reconoces alguno de estos cinco errores en tu campaña actual, la buena noticia es que todos tienen solución sin necesidad de tirar lo que ya tienes y empezar de cero. El orden de actuación lógico es:</p>
+
+            <ul class="check-list" style="margin-top: 20px;">
+                <li><strong>Esta semana:</strong> Abre el informe de términos de búsqueda en Google Ads y añade como negativos todo lo que no debería activar tu anuncio.</li>
+                <li><strong>Este mes:</strong> Configura el seguimiento de conversiones correctamente en GA4 y vincúlalo a la cuenta de Ads. Sin datos de conversión, el resto no tiene sentido.</li>
+                <li><strong>Antes de la próxima temporada alta:</strong> Crea al menos una landing page específica para tu campaña principal, con un único objetivo: reserva directa.</li>
+                <li><strong>Restructuración:</strong> Separa campañas por tipología de buscador y define un calendario de presupuesto estacional antes de empezar cada trimestre.</li>
+                <li><strong>Estrategia de keywords:</strong> Audita las palabras clave activas. Elimina las genéricas donde compites con OTAs. Refuerza las de marca propia y long-tail hiperlocal.</li>
+            </ul>
+
+            <p style="margin-top: 24px;">Google Ads puede ser el canal más rentable que tiene un alojamiento rural para captar reservas directas y reducir la dependencia de las OTA. Pero solo si está bien construido. La diferencia entre una campaña que quema presupuesto y una que llena habitaciones no está en cuánto gastas, sino en cómo está estructurado cada euro que inviertes.</p>
+        </div>
+
+        <!-- TAGS -->
+        <div class="article-tags" role="group" aria-label="Etiquetas del artículo">
+            <span class="tag">Google Ads</span>
+            <span class="tag">Turismo Rural</span>
+            <span class="tag">SEM</span>
+            <span class="tag">Reservas Directas</span>
+            <span class="tag">Keywords Negativas</span>
+            <span class="tag">Landing Page</span>
+            <span class="tag">Estacionalidad</span>
+            <span class="tag">Conversiones</span>
+        </div>
+
+        <!-- AUTOR FINAL -->
+        <div class="author-final">
+            <div class="author-final-avatar" aria-label="Avatar de Saaid">S</div>
+            <div class="author-final-info">
+                <h4>Saaid · Trotant</h4>
+                <p>Especialista en marketing digital turístico con foco en SEM y webs de conversión para alojamientos rurales, hoteles boutique y experiencias locales. Trabajo por proyectos cerrados con precio fijo: resultados concretos, sin horas facturadas. Si tienes un alojamiento y quieres dejar de depender de las OTAs, <a href="../index.html#contacto">hablemos</a>.</p>
+            </div>
         </div>
 
     </article>
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <div class="toc-box">
+    <aside class="sidebar" aria-label="Tabla de contenidos y acciones">
+
+        <nav class="toc-box" aria-label="Tabla de contenidos">
             <h4>En este artículo</h4>
-            <ul class="toc-list" role="list">
-                <li><a href="#error-1" class="active"><span class="toc-num">01.</span> Concordancia amplia</a></li>
+            <ul class="toc-list" id="tocList">
+                <li><a href="#error-1"><span class="toc-num">01</span> Concordancia amplia sin negativos</a></li>
+                <li><a href="#error-2"><span class="toc-num">02</span> Ignorar la estacionalidad</a></li>
+                <li><a href="#error-3"><span class="toc-num">03</span> Tráfico a la página de inicio</a></li>
+                <li><a href="#error-4"><span class="toc-num">04</span> Sin seguimiento de conversiones</a></li>
+                <li><a href="#error-5"><span class="toc-num">05</span> Competir con keywords genéricas</a></li>
+                <li><a href="#conclusion"><span class="toc-num">→</span> Qué hacer ahora mismo</a></li>
             </ul>
-        </div>
+        </nav>
 
         <div class="sidebar-cta">
-            <h4>¿Tu cuenta pierde dinero?</h4>
-            <p>Audito tu estrategia actual en Google Ads y te indico exactamente dónde se va tu presupuesto.</p>
-            <a href="../index.html#contacto">Analizar mi cuenta</a>
+            <h4>¿Tu campaña tiene alguno de estos problemas?</h4>
+            <p>Audito cuentas de Google Ads para alojamientos turísticos. Informe en 7 días, precio cerrado, sin sorpresas.</p>
+            <a href="../index.html#contacto">Solicitar auditoría →</a>
         </div>
-    </aside>
 
+        <div class="sidebar-related">
+            <h4>Próximos artículos</h4>
+            <div class="related-item">
+                <div class="related-cat">Web · Conversión</div>
+                <div class="related-title">7 señales de que tu web pierde reservas directas</div>
+            </div>
+            <div class="related-item">
+                <div class="related-cat">SEM · Google Ads</div>
+                <div class="related-title">Performance Max para hoteles rurales: ¿vale la pena en 2026?</div>
+            </div>
+            <div class="related-item">
+                <div class="related-cat">Estrategia</div>
+                <div class="related-title">Cómo calcular el ROAS real de tus campañas turísticas</div>
+            </div>
+        </div>
+
+    </aside>
+</div>
+
+<!-- ══════ NAVEGACIÓN ENTRE ARTÍCULOS ══════ -->
+<div class="article-nav" aria-label="Navegación entre artículos">
+    <a href="../noticias.html" class="article-nav-card">
+        <div class="nav-direction">← Volver</div>
+        <div class="nav-title">Todos los artículos de Noticias</div>
+    </a>
+    <div class="article-nav-card next" style="cursor:default; opacity:0.5;">
+        <div class="nav-direction">Siguiente artículo →</div>
+        <div class="nav-placeholder">Próximamente</div>
+    </div>
 </div>
 
 <!-- ══════ FOOTER ══════ -->
 <footer>
     <div class="footer-logo">Trotant</div>
-    <p>&copy; 2026 Trotant. Todos los derechos reservados.</p>
-    <nav aria-label="Navegación del pie de página">
-        <a href="../index.html">Inicio</a>
+    <p>© 2026 Trotant · Marketing Digital Turístico por Saaid</p>
+    <nav aria-label="Links del pie">
+        <a href="../index.html#marketing">Servicios</a>
         <a href="../noticias.html">Noticias</a>
         <a href="../index.html#contacto">Contacto</a>
     </nav>
 </footer>
 
 <script>
-    // Menú móvil funcional
+    // Menú móvil
     const menuBtn = document.getElementById('menuBtn');
     const navList = document.getElementById('navList');
-
+    const menuIcon = menuBtn.querySelector('svg');
     menuBtn.addEventListener('click', () => {
         const isOpen = navList.classList.toggle('open');
         menuBtn.setAttribute('aria-expanded', isOpen);
+        menuIcon.innerHTML = isOpen
+            ? '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+            : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
     });
+    document.querySelectorAll('#navList a').forEach(a => a.addEventListener('click', () => {
+        navList.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+    }));
 
-    // Barra de progreso de lectura interactiva
+    // Barra de progreso de lectura
+    const progressFill = document.getElementById('progressFill');
     window.addEventListener('scroll', () => {
-        const article = document.getElementById('articleBody');
-        if (!article) return;
-        
-        const rect = article.getBoundingClientRect();
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const articleTop = rect.top + scrollTop - 64; 
-        const articleHeight = rect.height;
-        const windowHeight = window.innerHeight;
+        const body = document.body;
+        const html = document.documentElement;
+        const totalHeight = Math.max(body.scrollHeight, html.scrollHeight) - html.clientHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        progressFill.style.width = Math.min(progress, 100) + '%';
+    }, { passive: true });
 
-        let progress = 0;
-        if (scrollTop > articleTop) {
-            progress = ((scrollTop - articleTop) / (articleHeight - windowHeight + 64)) * 100;
-        }
-        
-        document.getElementById('progressFill').style.width = Math.min(Math.max(progress, 0), 100) + '%';
+    // Tabla de contenidos activa según scroll
+    const tocLinks = document.querySelectorAll('#tocList a');
+    const sections = ['error-1','error-2','error-3','error-4','error-5','conclusion'].map(id => document.getElementById(id)).filter(Boolean);
+
+    const observerOptions = { rootMargin: '-20% 0px -70% 0px' };
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                });
+            }
+        });
+    }, observerOptions);
+    sections.forEach(s => observer.observe(s));
+
+    // Copiar enlace
+    document.getElementById('copyBtn').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+            setTimeout(() => {
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+            }, 2000);
+        });
     });
 </script>
-
 </body>
 </html>
