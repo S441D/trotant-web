@@ -3,16 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trotant — Marketing Digital Turístico</title>
-    <meta name="description" content="Marketing digital especializado en turismo rural, hoteles boutique y experiencias locales. SEM / Google Ads y webs turísticas con precios cerrados por proyecto. Sin agencias, sin horas facturadas.">
+    <title>Por qué el 80% del presupuesto en Google Ads de los hoteles rurales se desperdicia — Trotant</title>
+    <meta name="description" content="Descubre los 5 errores que hacen que los hoteles rurales desperdicien su presupuesto en Google Ads y aprende a estructurar campañas que realmente llenen habitaciones. Guía práctica con ejemplos reales.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://trotant.com/noticias/google-ads-hoteles-rurales-presupuesto-desperdiciado">
 
-    <!-- Fuentes: preconnect + display=swap para no bloquear render -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Por qué el 80% del presupuesto en Google Ads de los hoteles rurales se desperdicia">
+    <meta property="og:description" content="5 errores concretos que queman tu inversión publicitaria y cómo estructurar campañas que realmente llenan habitaciones.">
+    <meta property="og:url" content="https://trotant.com/noticias/google-ads-hoteles-rurales-presupuesto-desperdiciado">
+    <meta property="og:site_name" content="Trotant">
+    <meta property="article:published_time" content="2026-06-07">
+    <meta property="article:author" content="Saaid — Trotant">
+    <meta property="article:section" content="SEM · Google Ads">
+
+    <!-- Schema.org Article -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Por qué el 80% del presupuesto en Google Ads de los hoteles rurales se desperdicia (y cómo estructurar campañas que realmente llenan habitaciones)",
+      "description": "5 errores concretos que queman tu inversión publicitaria y cómo estructurar campañas que realmente llenan habitaciones.",
+      "author": {
+        "@type": "Person",
+        "name": "Saaid",
+        "url": "https://trotant.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trotant",
+        "url": "https://trotant.com"
+      },
+      "datePublished": "2026-06-07",
+      "dateModified": "2026-06-07",
+      "mainEntityOfPage": "https://trotant.com/noticias/google-ads-hoteles-rurales-presupuesto-desperdiciado",
+      "articleSection": "SEM · Google Ads",
+      "keywords": "Google Ads hoteles rurales, campañas Google Ads turismo, presupuesto publicidad hotel rural, reservas directas hotel, marketing digital turístico"
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-    <!-- FontAwesome: solo los iconos que usamos, inline SVG para evitar bloqueo y CSS no usado -->
     <style>
         :root {
             --accent: #1DE9B6;
@@ -27,6 +62,7 @@
             --serif: 'DM Serif Display', Georgia, serif;
             --sans: 'DM Sans', system-ui, sans-serif;
             --radius: 12px;
+            --content-width: 720px;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,33 +78,17 @@
         /* ─── HEADER ─── */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 0 40px;
-            height: 64px;
+            padding: 0 40px; height: 64px;
             display: flex; align-items: center; justify-content: space-between;
             background: rgba(15,15,15,0.88);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-
-        .logo {
-            display: flex; align-items: center; gap: 10px;
-            text-decoration: none; color: var(--text);
-        }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
         .logo img { height: 34px; width: auto; }
-        .logo-text {
-            font-family: var(--serif);
-            font-size: 1.35rem;
-            letter-spacing: 0.5px;
-        }
-
-        .menu-toggle {
-            display: none; background: none; border: none;
-            color: var(--text); font-size: 1.4rem; cursor: pointer; padding: 4px;
-        }
-
-        nav ul {
-            list-style: none; display: flex; gap: 8px; align-items: center;
-        }
+        .logo-text { font-family: var(--serif); font-size: 1.35rem; letter-spacing: 0.5px; }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 4px; }
+        nav ul { list-style: none; display: flex; gap: 8px; align-items: center; }
         nav ul a {
             text-decoration: none; color: var(--text-muted);
             font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
@@ -76,280 +96,411 @@
             transition: color 0.2s, background 0.2s;
         }
         nav ul a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
-        nav ul a.cta-nav {
-            color: var(--dark); background: var(--accent);
-            font-weight: 700;
-        }
+        nav ul a.active { color: var(--accent); }
+        nav ul a.cta-nav { color: var(--dark); background: var(--accent); font-weight: 700; }
         nav ul a.cta-nav:hover { background: var(--accent-dark); }
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
-            padding: 120px 40px 80px;
+        /* ─── PROGRESS BAR ─── */
+        .progress-bar {
+            position: fixed; top: 64px; left: 0; right: 0; z-index: 999;
+            height: 2px; background: rgba(255,255,255,0.06);
         }
-        .hero-bg {
-            position: absolute; inset: 0;
-            background-image:
-                linear-gradient(to bottom, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.82) 60%, var(--dark) 100%),
-                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000');
-            background-size: cover; background-position: center;
+        .progress-fill {
+            height: 100%; background: var(--accent);
+            width: 0%; transition: width 0.1s linear;
         }
-        .hero-noise {
-            position: absolute; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            opacity: 0.4; pointer-events: none;
-        }
-        .hero-content { position: relative; max-width: 860px; text-align: center; }
 
-        .hero-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(29,233,182,0.12); border: 1px solid rgba(29,233,182,0.25);
-            color: var(--accent); border-radius: 40px;
-            padding: 6px 18px; font-size: 0.72rem; font-weight: 600;
-            letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px;
+        /* ─── HERO DEL ARTÍCULO ─── */
+        .article-hero {
+            padding: 110px 40px 0;
+            max-width: 1100px; margin: 0 auto;
         }
-        .hero-tag::before {
-            content: ''; width: 6px; height: 6px; border-radius: 50%;
+        .article-hero-inner {
+            border-radius: var(--radius); overflow: hidden;
+            background: var(--dark-2);
+        }
+
+        .article-hero-top {
+            padding: 60px 64px 48px;
+            position: relative;
+        }
+        .article-hero-top::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(29,233,182,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--text-muted);
+            margin-bottom: 32px; position: relative;
+        }
+        .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb .sep { color: var(--text-dim); }
+
+        .article-meta-top {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .cat-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(29,233,182,0.1); border: 1px solid rgba(29,233,182,0.2);
+            color: var(--accent); border-radius: 40px;
+            padding: 5px 14px; font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        .cat-pill::before {
+            content: ''; width: 5px; height: 5px; border-radius: 50%;
             background: var(--accent); flex-shrink: 0;
         }
+        .meta-date { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.04em; }
+        .meta-read { font-size: 0.75rem; color: var(--text-dim); }
+        .meta-sep { color: var(--text-dim); font-size: 0.7rem; }
 
-        .hero h1 {
+        .article-hero-top h1 {
             font-family: var(--serif);
-            font-size: clamp(2.8rem, 7vw, 5.2rem);
-            line-height: 1.08;
-            margin-bottom: 28px;
-            letter-spacing: -0.02em;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1; letter-spacing: -0.02em;
+            max-width: 800px; margin-bottom: 24px;
+            position: relative;
         }
-        .hero h1 em {
-            font-style: italic; color: var(--accent);
+        .article-hero-top h1 em { font-style: italic; color: var(--accent); }
+
+        .article-intro {
+            font-size: 1.1rem; line-height: 1.75;
+            color: rgba(240,237,232,0.75); max-width: 680px;
+            font-weight: 300; position: relative;
         }
 
-        .hero-sub {
-            font-size: clamp(1rem, 2.5vw, 1.18rem);
-            color: rgba(240,237,232,0.8);
-            max-width: 620px; margin: 0 auto 44px;
-            line-height: 1.7; font-weight: 300;
+        /* Banda visual del autor */
+        .author-band {
+            display: flex; align-items: center; gap: 20px;
+            padding: 24px 64px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            background: var(--dark-3);
+        }
+        .author-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            overflow: hidden; flex-shrink: 0;
+            border: 2px solid rgba(29,233,182,0.3);
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-avatar-placeholder {
+            width: 100%; height: 100%;
+            background: var(--dark-4);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 1.1rem; color: var(--accent);
+        }
+        .author-info { flex: 1; }
+        .author-name { font-size: 0.88rem; font-weight: 600; }
+        .author-bio { font-size: 0.75rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+        .share-links {
+            display: flex; gap: 10px; align-items: center;
+        }
+        .share-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+        .share-btn {
+            width: 34px; height: 34px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent; color: var(--text-muted);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s; text-decoration: none;
+        }
+        .share-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ─── LAYOUT ARTÍCULO ─── */
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+            max-width: 1100px; margin: 0 auto;
+            padding: 60px 40px 100px;
+            align-items: start;
         }
 
-        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; border-radius: 50px;
-            font-family: var(--sans); font-weight: 600;
-            font-size: 0.85rem; letter-spacing: 0.04em;
-            text-transform: uppercase; text-decoration: none;
-            cursor: pointer; border: none; transition: all 0.2s;
+        /* ─── CONTENIDO PRINCIPAL ─── */
+        .article-body {
+            font-size: 1rem; line-height: 1.8; font-weight: 300;
+            color: rgba(240,237,232,0.88);
         }
-        .btn-primary { background: var(--accent); color: var(--dark); }
-        .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
-        .btn-ghost {
-            background: transparent; color: var(--text);
-            border: 1px solid rgba(255,255,255,0.18);
-        }
-        .btn-ghost:hover { border-color: rgba(255,255,255,0.4); transform: translateY(-2px); }
 
-        .hero-scroll {
-            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.12em;
-            text-transform: uppercase; animation: pulse 2.5s ease-in-out infinite;
-        }
-        @keyframes pulse { 0%,100%{opacity:0.4;transform:translateX(-50%) translateY(0)} 50%{opacity:1;transform:translateX(-50%) translateY(4px)} }
-
-        /* ─── SECCIÓN: EL PROBLEMA ─── */
-        .dolor { background: var(--dark-2); padding: 100px 40px; }
-        .dolor .container { max-width: 1100px; margin: 0 auto; }
-        .label-section {
-            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
-            text-transform: uppercase; color: var(--accent);
-            margin-bottom: 20px;
-        }
-        .dolor h2 {
+        .article-body h2 {
             font-family: var(--serif);
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
-            line-height: 1.15; max-width: 680px; margin-bottom: 60px;
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            line-height: 1.2; color: var(--text);
+            margin: 56px 0 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
-        .dolor-grid {
+        .article-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+
+        .article-body h3 {
+            font-family: var(--sans);
+            font-size: 1.05rem; font-weight: 700;
+            color: var(--text); margin: 32px 0 12px;
+            letter-spacing: 0.01em;
+        }
+
+        .article-body p { margin-bottom: 20px; }
+        .article-body p:last-child { margin-bottom: 0; }
+
+        .article-body strong { color: var(--text); font-weight: 600; }
+
+        .article-body a {
+            color: var(--accent); text-decoration: underline;
+            text-decoration-color: rgba(29,233,182,0.3);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
+        }
+        .article-body a:hover { text-decoration-color: var(--accent); }
+
+        /* Número de error grande */
+        .error-block {
+            background: var(--dark-2); border-radius: var(--radius);
+            padding: 40px 44px; margin: 40px 0;
+            border-left: 3px solid var(--accent);
+            position: relative; overflow: hidden;
+        }
+        .error-block::before {
+            content: attr(data-num);
+            position: absolute; right: 32px; top: 50%; transform: translateY(-50%);
+            font-family: var(--serif); font-size: 7rem; line-height: 1;
+            color: rgba(29,233,182,0.05); user-select: none;
+            letter-spacing: -0.05em;
+        }
+        .error-block .error-label {
+            font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+        }
+        .error-block h3 {
+            font-family: var(--serif); font-size: 1.4rem;
+            margin: 0 0 14px; color: var(--text);
+        }
+        .error-block p {
+            color: var(--text-muted); font-size: 0.92rem;
+            line-height: 1.7; margin: 0;
+        }
+
+        /* Cita destacada */
+        .pullquote {
+            margin: 44px 0; padding: 36px 44px;
+            border-left: 3px solid rgba(29,233,182,0.4);
+            background: rgba(29,233,182,0.04);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        .pullquote p {
+            font-family: var(--serif); font-size: 1.35rem;
+            line-height: 1.4; color: var(--text);
+            margin: 0; font-style: italic;
+        }
+
+        /* Caja de datos / stat */
+        .stat-row {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px; margin: 40px 0; border-radius: var(--radius); overflow: hidden;
+        }
+        .stat-box {
+            background: var(--dark-2); padding: 28px 24px; text-align: center;
+        }
+        .stat-num {
+            font-family: var(--serif); font-size: 2.4rem;
+            color: var(--accent); line-height: 1; margin-bottom: 8px;
+        }
+        .stat-label { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; font-weight: 300; }
+
+        /* Lista de checks */
+        .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+        .check-list li {
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 0.92rem; color: rgba(240,237,232,0.82); line-height: 1.6;
+        }
+        .check-list li::before {
+            content: '→'; color: var(--accent); font-weight: 700;
+            flex-shrink: 0; margin-top: 2px;
+        }
+
+        /* Tabla comparativa */
+        .compare-table {
+            width: 100%; border-collapse: separate; border-spacing: 0;
+            border-radius: var(--radius); overflow: hidden;
+            margin: 32px 0; font-size: 0.88rem;
+        }
+        .compare-table thead th {
+            background: var(--dark-3); padding: 14px 20px;
+            text-align: left; font-weight: 600; font-size: 0.75rem;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+        }
+        .compare-table thead th:first-child { width: 40%; }
+        .compare-table tbody tr:nth-child(odd) td { background: var(--dark-2); }
+        .compare-table tbody tr:nth-child(even) td { background: var(--dark-3); }
+        .compare-table td { padding: 14px 20px; color: rgba(240,237,232,0.8); vertical-align: top; }
+        .compare-table td:first-child { font-weight: 500; color: var(--text); }
+        .bad { color: #ef4444; font-weight: 600; }
+        .good { color: var(--accent); font-weight: 600; }
+
+        /* Caja de solución */
+        .solution-box {
+            background: rgba(29,233,182,0.06);
+            border: 1px solid rgba(29,233,182,0.18);
+            border-radius: var(--radius); padding: 28px 32px; margin-top: 16px;
+        }
+        .solution-box .sol-label {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+        }
+        .solution-box p { color: rgba(240,237,232,0.82); font-size: 0.9rem; line-height: 1.65; margin: 0; }
+
+        /* CTA inline */
+        .inline-cta {
+            background: var(--dark-3); border-radius: var(--radius);
+            padding: 36px 40px; margin: 48px 0;
+            display: flex; align-items: center; gap: 32px;
+        }
+        .inline-cta-text h4 {
+            font-family: var(--serif); font-size: 1.3rem; margin-bottom: 8px;
+        }
+        .inline-cta-text p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; margin: 0; }
+        .inline-cta-btn {
+            display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+            padding: 13px 24px; background: var(--accent); color: var(--dark);
+            border-radius: 50px; font-family: var(--sans); font-weight: 700;
+            font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+            text-decoration: none; transition: all 0.2s; white-space: nowrap;
+        }
+        .inline-cta-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+        /* Conclusión */
+        .conclusion-box {
+            background: var(--dark-2); border-radius: var(--radius);
+            padding: 44px 48px; margin-top: 52px;
+            border-top: 3px solid var(--accent);
+        }
+        .conclusion-box h2 {
+            font-family: var(--serif); font-size: 1.7rem;
+            margin: 0 0 20px; border: none; padding: 0;
+        }
+
+        /* Tags del artículo */
+        .article-tags {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 48px; padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .tag {
+            padding: 6px 14px; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px; font-size: 0.72rem; color: var(--text-muted);
+            font-weight: 500; letter-spacing: 0.06em;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Autor bloque final */
+        .author-final {
+            background: var(--dark-2); border-radius: var(--radius);
+            padding: 36px 40px; margin-top: 32px;
+            display: flex; gap: 24px; align-items: flex-start;
+        }
+        .author-final-avatar {
+            width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid rgba(29,233,182,0.3); overflow: hidden;
+            background: var(--dark-3);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--serif); font-size: 1.2rem; color: var(--accent);
+        }
+        .author-final img { width: 100%; height: 100%; object-fit: cover; }
+        .author-final-info h4 { font-weight: 600; margin-bottom: 6px; }
+        .author-final-info p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 20px; }
+
+        .toc-box {
+            background: var(--dark-2); border-radius: var(--radius); padding: 28px;
+        }
+        .toc-box h4 {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px;
+        }
+        .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+        .toc-list a {
+            display: block; padding: 8px 12px; border-radius: 8px;
+            font-size: 0.82rem; color: var(--text-muted); text-decoration: none;
+            transition: all 0.2s; line-height: 1.4; font-weight: 400;
+            border-left: 2px solid transparent;
+        }
+        .toc-list a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+        .toc-list a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(29,233,182,0.06); }
+        .toc-list .toc-num { color: var(--text-dim); font-size: 0.7rem; margin-right: 4px; }
+
+        .sidebar-cta {
+            background: var(--dark-3); border-radius: var(--radius); padding: 28px;
+            text-align: center;
+        }
+        .sidebar-cta h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 10px; }
+        .sidebar-cta p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; font-weight: 300; margin-bottom: 20px; }
+        .sidebar-cta a {
+            display: flex; align-items: center; justify-content: center;
+            padding: 12px 20px; background: var(--accent); color: var(--dark);
+            border-radius: 50px; font-family: var(--sans); font-weight: 700;
+            font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .sidebar-cta a:hover { background: var(--accent-dark); }
+
+        .sidebar-related {
+            background: var(--dark-2); border-radius: var(--radius); padding: 28px;
+        }
+        .sidebar-related h4 {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px;
+        }
+        .related-item {
+            display: flex; flex-direction: column; gap: 4px;
+            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .related-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .related-cat { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+        .related-title { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; font-weight: 400; }
+
+        /* ─── NAVEGACIÓN ENTRE ARTÍCULOS ─── */
+        .article-nav {
+            max-width: 1100px; margin: 0 auto;
+            padding: 0 40px 80px;
             display: grid; grid-template-columns: 1fr 1fr;
             gap: 2px; border-radius: var(--radius); overflow: hidden;
         }
-        .dolor-cell {
-            background: var(--dark-3); padding: 36px 32px;
+        .article-nav-card {
+            background: var(--dark-2); padding: 32px 36px;
+            text-decoration: none; display: flex; flex-direction: column; gap: 10px;
+            transition: background 0.2s;
         }
-        .dolor-cell.highlight { background: var(--dark-4); }
-        .dolor-cell .icon-row {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-        }
-        .icon-box {
-            width: 40px; height: 40px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(29,233,182,0.1); color: var(--accent); font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        .icon-box.red { background: rgba(239,68,68,0.1); color: #ef4444; }
-        .dolor-cell h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
-        .dolor-cell p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; font-weight: 300; }
-
-        /* ─── MARKETING DIGITAL / TIENDA ─── */
-        .marketing { padding: 100px 40px; background: var(--dark); }
-        .marketing .container { max-width: 1100px; margin: 0 auto; }
-        .section-header { margin-bottom: 64px; }
-        .section-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
-            line-height: 1.15; max-width: 700px;
-        }
-        .section-header p {
-            color: var(--text-muted); font-size: 1rem;
-            max-width: 560px; margin-top: 16px; font-weight: 300; line-height: 1.7;
-        }
-
-        .service-tabs {
-            display: flex; gap: 4px; margin-bottom: 48px;
-            background: var(--dark-3); padding: 4px; border-radius: 50px;
-            width: fit-content;
-        }
-        .service-tab {
-            padding: 9px 22px; border-radius: 50px; border: none;
-            background: transparent; color: var(--text-muted);
-            font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
-            letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
-            transition: all 0.2s;
-        }
-        .service-tab.active { background: var(--accent); color: var(--dark); }
-
-        .service-panel { display: none; }
-        .service-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: var(--radius); overflow: hidden; }
-
-        .service-card { background: var(--dark-2); padding: 44px 40px; }
-        .service-card.big { grid-column: 1 / -1; }
-        .service-card .badge-price {
-            display: inline-block; background: rgba(29,233,182,0.1);
-            border: 1px solid rgba(29,233,182,0.2); color: var(--accent);
-            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-            text-transform: uppercase; padding: 4px 14px; border-radius: 40px;
-            margin-bottom: 20px;
-        }
-        .service-card h3 { font-family: var(--serif); font-size: 1.7rem; margin-bottom: 14px; }
-        .service-card .description { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
-        .service-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-        .service-card ul li {
-            display: flex; align-items: flex-start; gap: 10px;
-            font-size: 0.88rem; color: rgba(240,237,232,0.85);
-        }
-        .service-card ul li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-        .service-card .price-tag { font-family: var(--serif); font-size: 2.4rem; color: var(--text); }
-        .service-card .price-tag small { font-family: var(--sans); font-size: 0.9rem; color: var(--text-muted); }
-
-        /* ─── AUTORIDAD HÍBRIDA ─── */
-        .autoridad { background: var(--dark-2); padding: 100px 40px; }
-        .autoridad .container { max-width: 1100px; margin: 0 auto; }
-        .autoridad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
-        .autoridad-card {
-            background: var(--dark-3); padding: 44px 40px;
-            display: flex; flex-direction: column; gap: 20px;
-        }
-        .tipo-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
-        .autoridad-card h3 { font-family: var(--serif); font-size: 1.5rem; line-height: 1.25; }
-        .autoridad-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; font-weight: 300; flex: 1; }
-        .autoridad-card a {
-            color: var(--accent); font-size: 0.82rem; font-weight: 600;
-            letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .autoridad-card a:hover { opacity: 0.8; }
-
-        /* ─── NOTICIAS ─── */
-        .noticias { background: var(--dark); padding: 100px 40px; }
-        .noticias .container { max-width: 1100px; margin: 0 auto; }
-        .noticias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
-        .noticia-card {
-            background: var(--dark-2); padding: 36px 32px;
-            display: flex; flex-direction: column; gap: 14px; transition: background 0.2s;
-        }
-        .noticia-card:hover { background: var(--dark-3); }
-        .noticia-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-        .noticia-card h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
-        .noticia-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; flex: 1; font-weight: 300; }
-        .noticia-card a { color: var(--text-muted); font-size: 0.78rem; text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
-
-        /* ─── BLOG DE VIAJES ─── */
-        .viajes { background: var(--dark-2); padding: 100px 40px; }
-        .viajes .container { max-width: 1100px; margin: 0 auto; }
-        .viajes-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2px; border-radius: var(--radius); overflow: hidden; margin-top: 48px; }
-        .viaje-card {
-            position: relative; overflow: hidden; min-height: 360px;
-            display: flex; flex-direction: column; justify-content: flex-end;
-        }
-        .viaje-card-bg {
-            position: absolute; inset: 0; background-size: cover; background-position: center;
-            transition: transform 0.5s ease;
-        }
-        .viaje-card:hover .viaje-card-bg { transform: scale(1.04); }
-        .viaje-card-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%);
-        }
-        .viaje-card-content { position: relative; padding: 32px; }
-        .viaje-card-content .dest-tag { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-        .viaje-card-content h3 { font-family: var(--serif); font-size: 1.8rem; line-height: 1.1; margin-bottom: 10px; }
-        .viaje-card-content p { color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 300; }
-        .viaje-coming { background: var(--dark-3); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; text-align: center; padding: 32px; }
-        .viaje-coming svg { opacity: 0.4; }
-        .viaje-coming p { color: var(--text-muted); font-size: 0.85rem; }
-
-        /* ─── CONTACTO ─── */
-        .contacto { background: var(--dark); padding: 100px 40px; }
-        .contacto .container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .contacto-left h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 20px; }
-        .contacto-left p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; font-weight: 300; margin-bottom: 32px; }
-        .contacto-facts { display: flex; flex-direction: column; gap: 16px; }
-        .fact { display: flex; align-items: flex-start; gap: 14px; }
-        .fact svg { flex-shrink: 0; margin-top: 2px; }
-        .fact p { color: var(--text-muted); font-size: 0.88rem; font-weight: 300; }
-
-        /* Accesibilidad: label visualmente oculto pero disponible para lectores */
-        .sr-only {
-            position: absolute; width: 1px; height: 1px;
-            padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
-
-        .contacto-form { display: flex; flex-direction: column; gap: 14px; }
-        .contacto-form input,
-        .contacto-form select,
-        .contacto-form textarea {
-            width: 100%; padding: 14px 18px;
-            background: var(--dark-3); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: var(--radius); color: var(--text);
-            font-family: var(--sans); font-size: 0.9rem;
-            transition: border-color 0.2s;
-            -webkit-appearance: none; appearance: none;
-        }
-        .contacto-form input::placeholder,
-        .contacto-form textarea::placeholder { color: #666; }
-        .contacto-form input:focus,
-        .contacto-form select:focus,
-        .contacto-form textarea:focus { outline: none; border-color: rgba(29,233,182,0.4); }
-        .contacto-form select { color: var(--text); }
-        .contacto-form select option { background: var(--dark-3); color: var(--text); }
-        .contacto-form textarea { height: 130px; resize: none; }
-        .contacto-form .btn-submit { width: 100%; justify-content: center; padding: 16px; background: var(--accent); color: var(--dark); border: none; border-radius: 50px; font-family: var(--sans); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
-        .contacto-form .btn-submit:hover { background: var(--accent-dark); transform: translateY(-2px); }
-        #form-ok { display: none; color: var(--accent); font-weight: 600; font-size: 0.9rem; text-align: center; padding: 12px; background: rgba(29,233,182,0.1); border-radius: var(--radius); }
+        .article-nav-card:hover { background: var(--dark-3); }
+        .nav-direction { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+        .nav-title { font-size: 0.92rem; color: var(--text-muted); line-height: 1.4; }
+        .article-nav-card.next { text-align: right; }
+        .nav-placeholder { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
 
         /* ─── FOOTER ─── */
         footer {
             background: var(--dark-2); border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+            padding: 40px; display: flex; align-items: center;
+            justify-content: space-between; flex-wrap: wrap; gap: 20px;
         }
         .footer-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--text-muted); }
         footer p { color: var(--text-dim); font-size: 0.78rem; }
+        footer nav { display: flex; gap: 24px; }
+        footer nav a { color: var(--text-dim); font-size: 0.78rem; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+        footer nav a:hover { color: var(--accent); }
 
         /* ─── RESPONSIVE ─── */
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
+            .article-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .toc-box { display: none; }
+        }
+        @media (max-width: 768px) {
             header { padding: 0 20px; }
             .menu-toggle { display: block; }
             nav ul {
@@ -362,22 +513,27 @@
             nav ul.open { display: flex; }
             nav ul a { padding: 12px 16px; border-radius: 8px; }
             nav ul a.cta-nav { text-align: center; }
-            .hero { padding: 100px 24px 80px; }
-            .hero h1 { font-size: clamp(2.2rem, 9vw, 3.8rem); }
-            .dolor, .marketing, .autoridad, .noticias, .viajes, .contacto { padding: 70px 24px; }
-            .dolor-grid, .service-panel.active, .autoridad-grid { grid-template-columns: 1fr; }
-            .service-card.big { grid-column: auto; }
-            .viajes-grid { grid-template-columns: 1fr; }
-            .viaje-card { min-height: 300px; }
-            .viaje-coming { min-height: 180px; }
-            .contacto .container { grid-template-columns: 1fr; gap: 48px; }
-            footer { flex-direction: column; text-align: center; padding: 32px 24px; }
-        }
 
-        @media (max-width: 600px) {
-            .service-tabs { flex-wrap: wrap; border-radius: 12px; }
-            .hero-btns { flex-direction: column; align-items: center; }
-            .btn { width: 100%; max-width: 320px; justify-content: center; }
+            .article-hero { padding: 90px 16px 0; }
+            .article-hero-top { padding: 36px 24px 28px; }
+            .author-band { padding: 20px 24px; flex-wrap: wrap; }
+            .article-layout { padding: 40px 16px 60px; }
+
+            .stat-row { grid-template-columns: 1fr; }
+            .error-block { padding: 28px 28px; }
+            .error-block::before { display: none; }
+            .inline-cta { flex-direction: column; gap: 20px; text-align: center; }
+            .conclusion-box { padding: 32px 28px; }
+            .author-final { flex-direction: column; }
+
+            .article-nav { grid-template-columns: 1fr; padding: 0 16px 60px; }
+            .article-nav-card.next { text-align: left; }
+
+            footer { flex-direction: column; text-align: center; padding: 32px 20px; }
+            footer nav { justify-content: center; }
+
+            .pullquote { padding: 24px 28px; margin: 32px 0; }
+            .pullquote p { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -385,8 +541,8 @@
 
 <!-- ══════ HEADER ══════ -->
 <header>
-    <a href="#" class="logo">
-        <img src="fotos/logo.webp" alt="Logo Trotant" width="68" height="34">
+    <a href="../index.html" class="logo">
+        <img src="../fotos/logo.webp" alt="Logo Trotant" width="68" height="34">
         <span class="logo-text">Trotant</span>
     </a>
     <button class="menu-toggle" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navList">
@@ -394,288 +550,361 @@
     </button>
     <nav>
         <ul id="navList" role="list">
-            <li><a href="#marketing">Marketing Digital</a></li>
-            <li><a href="noticias.html">Noticias</a></li>
-            <li><a href="#blog-viajes">Blog de Viajes</a></li>
-            <li><a href="#contacto" class="cta-nav">Contratar →</a></li>
+            <li><a href="../index.html#marketing">Marketing Digital</a></li>
+            <li><a href="../noticias.html" class="active">Noticias</a></li>
+            <li><a href="../index.html#blog-viajes">Blog de Viajes</a></li>
+            <li><a href="../index.html#contacto" class="cta-nav">Contratar →</a></li>
         </ul>
     </nav>
 </header>
 
-<!-- ══════ HERO ══════ -->
-<section class="hero">
-    <div class="hero-bg" role="img" aria-label="Paisaje de montaña con lago al atardecer"></div>
-    <div class="hero-noise" aria-hidden="true"></div>
-    <div class="hero-content">
-        <div class="hero-tag" aria-label="Marketing Digital para el Sector Turístico">Marketing Digital para el Sector Turístico</div>
-        <h1>Tu hotel merece<br>ser encontrado <em>primero.</em></h1>
-        <p class="hero-sub">Combino datos, IA y sensibilidad viajera para posicionar alojamientos rurales, hoteles boutique y experiencias locales. Sin agencias genéricas, sin horas facturadas. Solo resultados.</p>
-        <div class="hero-btns">
-            <a href="#marketing" class="btn btn-primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                Ver servicios y precios
+<!-- Barra de progreso de lectura -->
+<div class="progress-bar" aria-hidden="true">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- ══════ HERO DEL ARTÍCULO ══════ -->
+<div class="article-hero">
+    <div class="article-hero-inner">
+        <div class="article-hero-top">
+            <div class="breadcrumb">
+                <a href="../index.html">Trotant</a>
+                <span class="sep">→</span>
+                <a href="../noticias.html">Noticias</a>
+                <span class="sep">→</span>
+                <span>Google Ads · Hoteles rurales</span>
+            </div>
+
+            <div class="article-meta-top">
+                <span class="cat-pill">SEM · Google Ads</span>
+                <span class="meta-date">7 junio 2026</span>
+                <span class="meta-sep">·</span>
+                <span class="meta-read">12 min de lectura</span>
+            </div>
+
+            <h1>Por qué el 80% del presupuesto en Google Ads de los hoteles rurales se desperdicia<br><em>(y cómo evitarlo)</em></h1>
+
+            <p class="article-intro">Si tienes un alojamiento rural y has probado Google Ads, probablemente hayas pensado que «no funciona para tu negocio». Spoiler: sí funciona. El problema está en cómo está montada la campaña. En este artículo desmonto los 5 errores que convierten tu presupuesto publicitario en una donación a Google y te explico cómo estructurar campañas que realmente llenan habitaciones.</p>
+        </div>
+
+        <div class="author-band">
+            <div class="author-avatar">
+                <div class="author-avatar-placeholder" aria-label="Avatar de Saaid">S</div>
+            </div>
+            <div class="author-info">
+                <div class="author-name">Saaid · Trotant</div>
+                <div class="author-bio">Especialista en marketing digital turístico. Viajero por convicción, estratega por oficio.</div>
+            </div>
+            <div class="share-links">
+                <span class="share-label">Compartir</span>
+                <a href="https://twitter.com/intent/tweet?url=https://trotant.com/noticias/google-ads-hoteles-rurales&text=Por+qué+el+80%25+del+presupuesto+en+Google+Ads+de+los+hoteles+rurales+se+desperdicia" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en Twitter/X">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://trotant.com/noticias/google-ads-hoteles-rurales" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en LinkedIn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <button class="share-btn" id="copyBtn" aria-label="Copiar enlace">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════ LAYOUT PRINCIPAL ══════ -->
+<div class="article-layout">
+
+    <!-- CONTENIDO -->
+    <article class="article-body" id="articleBody">
+
+        <p>En España, <strong>el 34,3% de las noches de alojamiento se reservaron de forma directa en 2023</strong>. Un año antes eran el 41,4%. La tendencia es clara: los hoteles rurales ceden terreno a las OTA año tras año, pagan comisiones de entre el 15% y el 30% por cada reserva, y encima siguen sin entender por qué sus campañas de Google Ads «no funcionan».</p>
+
+        <p>La respuesta casi siempre es la misma: <strong>no es que Google Ads no funcione. Es que la campaña está mal construida desde el primer clic.</strong></p>
+
+        <p>He auditado cuentas de alojamientos rurales con presupuestos que oscilaban entre los 200€ y los 2.000€ mensuales. El patrón se repite con una regularidad que ya no me sorprende: dinero que se va a búsquedas irrelevantes, anuncios que aparecen en fechas equivocadas, páginas de destino que no convierten y métricas que no le dicen nada al propietario del negocio. A continuación te explico los cinco errores que lo causan y qué hacer para solucionarlos.</p>
+
+        <div class="stat-row" role="group" aria-label="Datos clave del sector">
+            <div class="stat-box">
+                <div class="stat-num">20–30%</div>
+                <div class="stat-label">del presupuesto medio en Google Ads se gasta en búsquedas irrelevantes</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">15–30%</div>
+                <div class="stat-label">de comisión cobra una OTA por cada reserva que te trae</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">50%</div>
+                <div class="stat-label">de tasa de cancelación en OTAs vs 18% en reserva directa</div>
+            </div>
+        </div>
+
+        <!-- ERROR 1 -->
+        <h2 id="error-1">Error 1. Usar concordancia amplia sin una lista de negativos sólida</h2>
+
+        <div class="error-block" data-num="01">
+            <div class="error-label">Error crítico · Keywords</div>
+            <h3>Tu anuncio aparece para búsquedas que nunca van a reservar</h3>
+            <p>La concordancia amplia es la configuración por defecto de Google Ads. Si tu keyword es «casa rural Segovia», Google puede mostrar tu anuncio para «casas rurales abandonadas Segovia», «trabajos en casa rural» o «fotos casa rural». Tres clics. Tres euros perdidos. Multiplicado por miles de búsquedas al mes.</p>
+        </div>
+
+        <p>La concordancia amplia tiene su utilidad en cuentas con mucho histórico de datos y presupuestos altos donde el algoritmo ya sabe qué convierte. Para un hotel rural con presupuesto ajustado y poca historia de conversiones, es una trampa.</p>
+
+        <p>Lo más peligroso no es lo que se ve, sino lo que no se mira: el <strong>informe de términos de búsqueda</strong>. La mayoría de los propietarios de alojamientos que gestionan sus propias campañas no saben que existe. Ese informe muestra exactamente qué escribió el usuario en Google antes de hacer clic en tu anuncio. Lo que encuentras ahí suele ser perturbador.</p>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Empieza con concordancia de frase o exacta para tus keywords principales. Construye desde el primer día una lista de palabras clave negativas: «gratis», «barato», «trabajo», «alquiler largo plazo», «abandonada», «fotos», «recetas». Revisa el informe de términos de búsqueda cada semana durante el primer mes y añade negativos sin piedad. Esa disciplina inicial vale más que cualquier ajuste de puja.</p>
+        </div>
+
+        <!-- ERROR 2 -->
+        <h2 id="error-2">Error 2. No tener en cuenta la estacionalidad en la estructura de la campaña</h2>
+
+        <div class="error-block" data-num="02">
+            <div class="error-label">Error de estrategia · Planificación</div>
+            <h3>Mismo presupuesto en enero que en agosto</h3>
+            <p>Un hotel rural no es una tienda online. Tu demanda no es plana. Tiene picos brutales en Semana Santa, agosto y puentes, y valles profundos en febrero o noviembre. Una campaña configurada con presupuesto fijo durante todo el año está, por definición, mal optimizada: gasta de más cuando la demanda ya se llena sola y de menos cuando más necesita el empujón.</p>
+        </div>
+
+        <p>El turismo rural en España tiene además una particularidad que pocas campañas respetan: <strong>hay dos tipos de buscador con intenciones completamente distintas</strong>. El que busca con ocho meses de antelación («escapada rural Pirineos verano») y el que busca el jueves para el fin de semana siguiente («casa rural libre este finde»). Cada uno necesita un mensaje diferente, una landing diferente y una puja diferente.</p>
+
+        <table class="compare-table" aria-label="Comparativa de tipología de buscador turístico">
+            <thead>
+                <tr>
+                    <th>Tipología</th>
+                    <th>Planificador</th>
+                    <th>Impulsivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Antelación</td>
+                    <td>2–8 meses</td>
+                    <td>0–7 días</td>
+                </tr>
+                <tr>
+                    <td>Intención de búsqueda</td>
+                    <td>Informacional + transaccional</td>
+                    <td>Puramente transaccional</td>
+                </tr>
+                <tr>
+                    <td>Keyword ejemplo</td>
+                    <td>«casa rural Gredos verano 2026»</td>
+                    <td>«casa rural disponible este finde»</td>
+                </tr>
+                <tr>
+                    <td>Mensaje del anuncio</td>
+                    <td>Descripción de experiencia, galería</td>
+                    <td>Disponibilidad, confirmación inmediata</td>
+                </tr>
+                <tr>
+                    <td>CPC habitual</td>
+                    <td class="good">Bajo (menos competencia)</td>
+                    <td class="bad">Alto (mucha competencia)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Estructura campañas separadas para cada tipología de buscador. Sube las pujas manualmente o con ajustes de estacionalidad de Google 6–8 semanas antes de cada temporada alta. Reduce presupuesto o pausa campañas en temporada baja si tienes ocupación garantizada por otros canales. Y activa siempre las campañas antes de que la demanda llegue, nunca cuando ya está aquí.</p>
+        </div>
+
+        <!-- PULLQUOTE -->
+        <div class="pullquote">
+            <p>«Activar una campaña de Google Ads el primer día de agosto para captar reservas de agosto es como abrir un paraguas cuando ya estás empapado.»</p>
+        </div>
+
+        <!-- ERROR 3 -->
+        <h2 id="error-3">Error 3. Mandar el tráfico a la página de inicio</h2>
+
+        <div class="error-block" data-num="03">
+            <div class="error-label">Error de conversión · Landing page</div>
+            <h3>El usuario llega, se pierde y se va a Booking</h3>
+            <p>Este es el error más caro de todos porque no lo verás en el informe de Google Ads. El anuncio tiene buen CTR, los clics llegan, el presupuesto se gasta. Pero el usuario aterriza en la home de tu web, no encuentra un botón de reserva claro, se distrae con el menú de navegación y diez segundos después está buscando tu alojamiento en Booking.com, donde sí encuentra el proceso de reserva fácil. Le acabas de pagar el clic a Google para que reserve por Booking.</p>
+        </div>
+
+        <p>Una <strong>landing page específica para cada campaña</strong> puede multiplicar la tasa de conversión de forma dramática. El concepto es simple: el mensaje del anuncio debe coincidir exactamente con lo que el usuario ve al llegar. Si el anuncio dice «Casa rural con piscina en la Sierra de Guadarrama — Reserva directa con descuento», la landing debe tener exactamente eso encima del pliegue, sin menú, sin distracciones, con un botón de reserva bien visible y un proceso de tres pasos máximo.</p>
+
+        <ul class="check-list" aria-label="Elementos esenciales de una landing page que convierte">
+            <li>Título que repite el beneficio exacto del anuncio (message match)</li>
+            <li>Una foto de calidad real como imagen principal, no de stock</li>
+            <li>Botón de reserva visible sin hacer scroll, con texto de acción claro</li>
+            <li>Precio visible desde el primer momento, sin obligar a buscar disponibilidad</li>
+            <li>Dos o tres elementos de confianza: reseñas reales, certificaciones, política clara de cancelación</li>
+            <li>Sin menú de navegación completo — el usuario debe tener un único camino: reservar</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Crea páginas de destino específicas para tus campañas principales. No hace falta un rediseño completo de la web: puede ser una página nueva dentro de tu WordPress con Elementor, sin menú de navegación, con un único objetivo. Usa el parámetro de URL para conectar el anuncio a la landing y mide el porcentaje de conversión de cada una por separado en Google Analytics 4.</p>
+        </div>
+
+        <!-- CTA INLINE -->
+        <div class="inline-cta">
+            <div class="inline-cta-text">
+                <h4>¿Tu campaña tiene alguno de estos errores?</h4>
+                <p>Hago auditorías de cuentas de Google Ads para alojamientos turísticos. Te digo exactamente qué está fallando y cómo arreglarlo, en formato ejecutivo, en 7 días.</p>
+            </div>
+            <a href="../index.html#contacto" class="inline-cta-btn">
+                Solicitar auditoría
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#contacto" class="btn btn-ghost">Cuéntame tu proyecto</a>
         </div>
+
+        <!-- ERROR 4 -->
+        <h2 id="error-4">Error 4. No configurar el seguimiento de conversiones</h2>
+
+        <div class="error-block" data-num="04">
+            <div class="error-label">Error de medición · Analytics</div>
+            <h3>Optimizas a ciegas. Google también.</h3>
+            <p>Si Google Ads no sabe qué clics generan reservas, no puede optimizar las pujas hacia los usuarios que más probabilidades tienen de reservar. Estás pagando a ciegas y el algoritmo también trabaja a ciegas. El resultado es que el presupuesto se distribuye de forma aleatoria entre clics que convierten y clics que no, sin ningún aprendizaje real acumulado.</p>
+        </div>
+
+        <p>En el sector turístico, definir una conversión tiene cierta complejidad porque el proceso de reserva no siempre termina en la web. Puede terminar en una llamada telefónica, en un formulario, en un motor de reservas externo o en un WhatsApp. Cada uno de esos puntos debe estar medido.</p>
+
+        <ul class="check-list" aria-label="Conversiones que debes medir en un alojamiento turístico">
+            <li>Clic en botón de reserva (micro-conversión)</li>
+            <li>Llegada a página de confirmación en el motor de reservas (macro-conversión)</li>
+            <li>Llamada telefónica desde el anuncio o la web (Google Ads tiene seguimiento nativo)</li>
+            <li>Envío de formulario de contacto</li>
+            <li>Clic en WhatsApp o enlace de contacto directo</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Configura Google Analytics 4 correctamente y vincúlalo a Google Ads. Define eventos de conversión para cada uno de los puntos de contacto anteriores. Si tu motor de reservas es externo (Cloudbeds, HiRUM, Beds24), configura el seguimiento entre dominios para no perder la atribución. Sin datos de conversión reales, ninguna estrategia de puja automática puede funcionar bien.</p>
+        </div>
+
+        <!-- ERROR 5 -->
+        <h2 id="error-5">Error 5. Competir por keywords genéricas contra Booking.com y Expedia</h2>
+
+        <div class="error-block" data-num="05">
+            <div class="error-label">Error de estrategia · Competencia</div>
+            <h3>Una batalla que no puedes ganar con un presupuesto normal</h3>
+            <p>Booking.com gastó 4.700 millones de dólares en marketing en 2023. Expedia, 5.300 millones. Si tu estrategia de Google Ads es pujar por «hoteles rurales España» o «casas rurales con piscina», estás en la misma subasta que estos gigantes. Ellos siempre van a ganar en posición. Y cuando pierdes la subasta, pagas más por cada clic que sí consigues.</p>
+        </div>
+
+        <p>La solución no es rendirse. Es jugar en un terreno donde los gigantes no pueden ganarte: <strong>la hiperspecificidad local y la intención de marca</strong>.</p>
+
+        <p>Una OTA nunca va a crear una campaña específica para «casa rural con chimenea y bañera en la Sierra Norte de Madrid». Tú sí puedes. Y ese usuario que busca algo tan específico tiene una intención de reserva altísima y muy poca competencia publicitaria. El CPC es bajo, la conversión es alta y estás capturando a alguien que sabe exactamente lo que quiere.</p>
+
+        <ul class="check-list" aria-label="Tipos de keywords donde puedes ganar a las OTAs">
+            <li>Keywords de marca propia: «[nombre del alojamiento] reservas», «[nombre] disponibilidad»</li>
+            <li>Keywords hiperlocales: «casa rural [municipio exacto]», «alojamiento rural [valle/sierra específica]»</li>
+            <li>Keywords de experiencia concreta: «casa rural con jacuzzi exterior [provincia]», «turismo rural perros bienvenidos [zona]»</li>
+            <li>Keywords de fecha específica: «casa rural disponible Semana Santa [año]», «puente diciembre casa rural [región]»</li>
+        </ul>
+
+        <div class="solution-box">
+            <div class="sol-label">La solución</div>
+            <p>Empieza siempre por keywords de marca propia. Si alguien busca el nombre de tu alojamiento y aparece Booking antes que tú, estás regalando una reserva directa. Después, construye una lista de keywords long-tail hiperlocales y de experiencia específica donde la competencia sea manejable. El volumen de búsqueda será menor, pero el coste por reserva conseguida será mucho más bajo.</p>
+        </div>
+
+        <!-- PULLQUOTE 2 -->
+        <div class="pullquote">
+            <p>«Ganar a Booking en su propio terreno es imposible con un presupuesto normal. Ganarle en tu terreno —tu nombre, tu ubicación exacta, tu experiencia concreta— es la estrategia correcta.»</p>
+        </div>
+
+        <!-- CONCLUSIÓN -->
+        <div class="conclusion-box" id="conclusion">
+            <h2>¿Qué hacer ahora mismo?</h2>
+            <p>Si reconoces alguno de estos cinco errores en tu campaña actual, la buena noticia es que todos tienen solución sin necesidad de tirar lo que ya tienes y empezar de cero. El orden de actuación lógico es:</p>
+
+            <ul class="check-list" style="margin-top: 20px;">
+                <li><strong>Esta semana:</strong> Abre el informe de términos de búsqueda en Google Ads y añade como negativos todo lo que no debería activar tu anuncio.</li>
+                <li><strong>Este mes:</strong> Configura el seguimiento de conversiones correctamente en GA4 y vincúlalo a la cuenta de Ads. Sin datos de conversión, el resto no tiene sentido.</li>
+                <li><strong>Antes de la próxima temporada alta:</strong> Crea al menos una landing page específica para tu campaña principal, con un único objetivo: reserva directa.</li>
+                <li><strong>Restructuración:</strong> Separa campañas por tipología de buscador y define un calendario de presupuesto estacional antes de empezar cada trimestre.</li>
+                <li><strong>Estrategia de keywords:</strong> Audita las palabras clave activas. Elimina las genéricas donde compites con OTAs. Refuerza las de marca propia y long-tail hiperlocal.</li>
+            </ul>
+
+            <p style="margin-top: 24px;">Google Ads puede ser el canal más rentable que tiene un alojamiento rural para captar reservas directas y reducir la dependencia de las OTA. Pero solo si está bien construido. La diferencia entre una campaña que quema presupuesto y una que llena habitaciones no está en cuánto gastas, sino en cómo está estructurado cada euro que inviertes.</p>
+        </div>
+
+        <!-- TAGS -->
+        <div class="article-tags" role="group" aria-label="Etiquetas del artículo">
+            <span class="tag">Google Ads</span>
+            <span class="tag">Turismo Rural</span>
+            <span class="tag">SEM</span>
+            <span class="tag">Reservas Directas</span>
+            <span class="tag">Keywords Negativas</span>
+            <span class="tag">Landing Page</span>
+            <span class="tag">Estacionalidad</span>
+            <span class="tag">Conversiones</span>
+        </div>
+
+        <!-- AUTOR FINAL -->
+        <div class="author-final">
+            <div class="author-final-avatar" aria-label="Avatar de Saaid">S</div>
+            <div class="author-final-info">
+                <h4>Saaid · Trotant</h4>
+                <p>Especialista en marketing digital turístico con foco en SEM y webs de conversión para alojamientos rurales, hoteles boutique y experiencias locales. Trabajo por proyectos cerrados con precio fijo: resultados concretos, sin horas facturadas. Si tienes un alojamiento y quieres dejar de depender de las OTAs, <a href="../index.html#contacto">hablemos</a>.</p>
+            </div>
+        </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Tabla de contenidos y acciones">
+
+        <nav class="toc-box" aria-label="Tabla de contenidos">
+            <h4>En este artículo</h4>
+            <ul class="toc-list" id="tocList">
+                <li><a href="#error-1"><span class="toc-num">01</span> Concordancia amplia sin negativos</a></li>
+                <li><a href="#error-2"><span class="toc-num">02</span> Ignorar la estacionalidad</a></li>
+                <li><a href="#error-3"><span class="toc-num">03</span> Tráfico a la página de inicio</a></li>
+                <li><a href="#error-4"><span class="toc-num">04</span> Sin seguimiento de conversiones</a></li>
+                <li><a href="#error-5"><span class="toc-num">05</span> Competir con keywords genéricas</a></li>
+                <li><a href="#conclusion"><span class="toc-num">→</span> Qué hacer ahora mismo</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-cta">
+            <h4>¿Tu campaña tiene alguno de estos problemas?</h4>
+            <p>Audito cuentas de Google Ads para alojamientos turísticos. Informe en 7 días, precio cerrado, sin sorpresas.</p>
+            <a href="../index.html#contacto">Solicitar auditoría →</a>
+        </div>
+
+        <div class="sidebar-related">
+            <h4>Próximos artículos</h4>
+            <div class="related-item">
+                <div class="related-cat">Web · Conversión</div>
+                <div class="related-title">7 señales de que tu web pierde reservas directas</div>
+            </div>
+            <div class="related-item">
+                <div class="related-cat">SEM · Google Ads</div>
+                <div class="related-title">Performance Max para hoteles rurales: ¿vale la pena en 2026?</div>
+            </div>
+            <div class="related-item">
+                <div class="related-cat">Estrategia</div>
+                <div class="related-title">Cómo calcular el ROAS real de tus campañas turísticas</div>
+            </div>
+        </div>
+
+    </aside>
+</div>
+
+<!-- ══════ NAVEGACIÓN ENTRE ARTÍCULOS ══════ -->
+<div class="article-nav" aria-label="Navegación entre artículos">
+    <a href="../noticias.html" class="article-nav-card">
+        <div class="nav-direction">← Volver</div>
+        <div class="nav-title">Todos los artículos de Noticias</div>
+    </a>
+    <div class="article-nav-card next" style="cursor:default; opacity:0.5;">
+        <div class="nav-direction">Siguiente artículo →</div>
+        <div class="nav-placeholder">Próximamente</div>
     </div>
-    <div class="hero-scroll" aria-hidden="true">
-        <span>Scroll</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-</section>
-
-<!-- ══════ BLOQUE 2: EL DOLOR ══════ -->
-<section class="dolor">
-    <div class="container">
-        <p class="label-section">¿Por qué Trotant?</p>
-        <h2>Las agencias de marketing no han dormido nunca en un turismo rural.</h2>
-        <div class="dolor-grid">
-            <div class="dolor-cell">
-                <div class="icon-row">
-                    <div class="icon-box red" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </div>
-                </div>
-                <h3>La agencia tradicional</h3>
-                <p>Plantillas copiadas de retail, campañas genéricas de Google que queman presupuesto, informes de 40 páginas que nadie entiende y un account manager que no sabe la diferencia entre un hotel rural y un hostel urbano.</p>
-            </div>
-            <div class="dolor-cell highlight">
-                <div class="icon-row">
-                    <div class="icon-box" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-                    </div>
-                </div>
-                <h3>El modelo Trotant</h3>
-                <p>He viajado, he alojado, he vivido el sector desde dentro. Entiendo la estacionalidad, el valor de una buena foto del desayuno y por qué el turista que reserva con 8 meses de antelación es diferente al de última hora. Y lo traduzco en anuncios que convierten.</p>
-            </div>
-            <div class="dolor-cell highlight">
-                <div class="icon-row">
-                    <div class="icon-box" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                </div>
-                <h3>Velocidad real, no promesas</h3>
-                <p>Trabajo por proyectos cerrados con precio fijo. Sin reuniones semanales infinitas, sin sorpresas en la factura. Un setup sólido en días, no meses. La IA y la automatización hacen el trabajo pesado; yo hago el trabajo inteligente.</p>
-            </div>
-            <div class="dolor-cell">
-                <div class="icon-row">
-                    <div class="icon-box" aria-hidden="true">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                    </div>
-                </div>
-                <h3>ROI sobre todo</h3>
-                <p>Si en mi gestión mensual no puedes ver el retorno, no tiene sentido continuar. Presupuesto claro, métricas reales: coste por reserva, ROAS de campañas, tráfico orgánico creciente. Sin humo.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ BLOQUE 3: MARKETING DIGITAL / TIENDA ══════ -->
-<section class="marketing" id="marketing">
-    <div class="container">
-        <div class="section-header">
-            <p class="label-section">Servicios · Precios cerrados</p>
-            <h2>Elige tu punto de entrada. Sin horas, sin sorpresas.</h2>
-            <p>Cada servicio tiene un precio fijo y un entregable concreto. Pagas por resultado, no por tiempo de pantalla.</p>
-        </div>
-
-        <div class="service-tabs" role="tablist" aria-label="Servicios de marketing">
-            <button class="service-tab active" data-panel="sem" role="tab" aria-selected="true" aria-controls="panel-sem" id="tab-sem">SEM / Paid Media</button>
-            <button class="service-tab" data-panel="web" role="tab" aria-selected="false" aria-controls="panel-web" id="tab-web">Páginas Web</button>
-
-        </div>
-
-        <!-- SEM -->
-        <div class="service-panel active" id="panel-sem" role="tabpanel" aria-labelledby="tab-sem">
-            <div class="service-card">
-                <div class="badge-price">Proyecto One-Off · Precio fijo</div>
-                <h3>Setup Completo de Campañas</h3>
-                <p class="description">Creo desde cero tu estructura de campañas en Google Ads (búsqueda + Performance Max) enfocadas en captar viajeros con intención real de reserva. Investigación de palabras clave, segmentación geográfica, creatividades y tracking correcto desde el día 1.</p>
-                <ul>
-                    <li>Auditoría y estrategia de keywords turísticas</li>
-                    <li>Configuración de conversiones (llamadas, reservas, formularios)</li>
-                    <li>Campañas Search + PMax estructuradas y etiquetadas</li>
-                    <li>Dashboard de resultados en Google Looker Studio</li>
-                    <li>Briefing de uso y 2 semanas de soporte post-entrega</li>
-                </ul>
-                <div class="price-tag">Desde 1.200€ <small>/ proyecto · + IVA</small></div>
-            </div>
-            <div class="service-card">
-                <div class="badge-price">Recurrente · Fee mensual</div>
-                <h3>Gestión y Optimización Mensual</h3>
-                <p class="description">Tomo el volante de tus campañas cada mes. Optimización de pujas, análisis de búsquedas, ajuste de creatividades y reporte mensual ejecutivo. Sin reuniones de relleno; solo decisiones basadas en datos.</p>
-                <ul>
-                    <li>Revisión semanal de rendimiento y optimización de pujas</li>
-                    <li>Gestión de audiencias y ajuste estacional (temporada alta/baja)</li>
-                    <li>A/B de anuncios y extensiones</li>
-                    <li>Reporte mensual con métricas clave: ROAS, CPA, CTR</li>
-                </ul>
-                <div class="price-tag">Desde 350€ <small>/ mes · mín. 3 meses · + IVA</small></div>
-            </div>
-        </div>
-
-        <!-- WEB -->
-        <div class="service-panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web">
-            <div class="service-card big">
-                <div class="badge-price">Proyecto One-Off · Precio fijo</div>
-                <h3>Web Turística Lista Para Convertir</h3>
-                <p class="description">Una web hecha en WordPress + Elementor, optimizada para velocidad (Core Web Vitals), con diseño visual potente y estructura pensada para que el viajero reserve directamente, sin pasar por Booking. Uso plantillas premium de calidad y las personalizo a fondo con IA y criterio estético real.</p>
-                <ul>
-                    <li>Diseño personalizado a partir de brief fotográfico y de marca</li>
-                    <li>Hasta 6 páginas: Inicio, Habitaciones/Servicios, Galería, Experiencias, Tarifas, Contacto</li>
-                    <li>Integración con motor de reservas (Cloudbeds, HiRUM, direct booking widget)</li>
-                    <li>SEO técnico de base: metaetiquetas, velocidad, mapa de sitio</li>
-                    <li>Formularios, RGPD y configuración de Google Analytics 4</li>
-                    <li>Entrega en 10-15 días laborables</li>
-                </ul>
-                <div class="price-tag">Desde 1.500€ <small>/ proyecto completo · + IVA</small></div>
-            </div>
-        </div>
-
-
-    </div>
-</section>
-
-<!-- ══════ BLOQUE 4: AUTORIDAD HÍBRIDA ══════ -->
-<section class="autoridad" id="autoridad">
-    <div class="container">
-        <p class="label-section">Técnica + Alma</p>
-        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; max-width: 680px;">No soy un técnico que nunca ha viajado, ni un viajero que no sabe de marketing.</h2>
-        <div class="autoridad-grid">
-            <div class="autoridad-card">
-                <div class="tipo-tag">Últimas Noticias · Marketing Turístico</div>
-                <h3>Por qué el 80% del presupuesto en Google Ads de los hoteles rurales se desperdicia (y cómo evitarlo)</h3>
-                <p>Las campañas genéricas sin segmentación estacional queman presupuesto en clics que nunca van a reservar. Analizo los 5 errores más comunes y cómo estructurar una campaña que realmente llene habitaciones en temporada media.</p>
-                <a href="#noticias">Leer el artículo →</a>
-            </div>
-            <div class="autoridad-card">
-                <div class="tipo-tag">Blog · Diario de Viaje</div>
-                <h3>Malta: el peso de la historia en cada piedra caliza amarilla</h3>
-                <p>No vine a tachar Malta de una lista. Vine a entender por qué un archipiélago de 316 km² acumula más capas culturales que ciudades tres veces más grandes. Esto es lo que encontré cuando apagué el móvil.</p>
-                <a href="#blog-viajes">Leer el relato →</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ NOTICIAS (Blog de Marketing) ══════ -->
-<section class="noticias" id="noticias">
-    <div class="container">
-        <div class="section-header">
-            <p class="label-section">Noticias · Blog de Marketing</p>
-            <h2>Estrategia, tendencias y datos para el sector turístico.</h2>
-        </div>
-        <div class="noticias-grid">
-            <article class="noticia-card">
-                <div class="noticia-cat">SEM · Google Ads</div>
-                <h3>Por qué el 80% del presupuesto de Google Ads en hoteles rurales se malgasta</h3>
-                <p>Sin segmentación estacional ni exclusión de keywords genéricas, tu dinero financia clics de curiosos. Analizo los 5 errores más frecuentes y la estructura de campaña que realmente convierte.</p>
-                <a href="#">Próximamente →</a>
-            </article>
-            <article class="noticia-card">
-                <div class="noticia-cat">SEO · Contenido</div>
-                <h3>Cómo posicionar tu turismo rural en Google Maps para búsquedas de "cerca de mí"</h3>
-                <p>El 63% de las búsquedas de alojamiento rural incluyen intención de proximidad geográfica. Tu ficha de Google Business Profile vale más de lo que crees si está bien optimizada.</p>
-                <a href="#">Próximamente →</a>
-            </article>
-            <article class="noticia-card">
-                <div class="noticia-cat">Web · Conversión</div>
-                <h3>La web de tu hotel pierde reservas directas: 7 señales que lo confirman</h3>
-                <p>Si el viajero aterriza en tu web y acaba reservando en Booking, hay un problema de conversión. Repaso los 7 fallos más frecuentes y cómo solucionarlos sin rediseño completo.</p>
-                <a href="#">Próximamente →</a>
-            </article>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ BLOG DE VIAJES ══════ -->
-<section class="viajes" id="blog-viajes">
-    <div class="container">
-        <div class="section-header">
-            <p class="label-section">Blog · Diario de Viaje</p>
-            <h2>Viajar despacio. Escribir lo que importa.</h2>
-            <p>Sin itinerarios de 10 países en 10 días. Solo relatos de lo que pasa cuando te quedas un poco más de lo previsto.</p>
-        </div>
-        <div class="viajes-grid">
-            <article class="viaje-card">
-                <div class="viaje-card-bg" style="background-image: url('fotos/Malta.webp');" role="img" aria-label="Vista de Malta con arquitectura mediterránea"></div>
-                <div class="viaje-card-overlay" aria-hidden="true"></div>
-                <div class="viaje-card-content">
-                    <div class="dest-tag">Malta · Mediterráneo</div>
-                    <h3>El peso de la historia<br>en piedra caliza amarilla</h3>
-                    <p>Próximamente · Relato completo</p>
-                </div>
-            </article>
-            <div style="display: flex; flex-direction: column; gap: 2px;">
-                <article class="viaje-card" style="flex: 1;">
-                    <div class="viaje-card-bg" style="background-image: url('fotos/Amsterdam.webp');" role="img" aria-label="Canal de Ámsterdam al amanecer"></div>
-                    <div class="viaje-card-overlay" aria-hidden="true"></div>
-                    <div class="viaje-card-content">
-                        <div class="dest-tag">Ámsterdam · Países Bajos</div>
-                        <h3>Los canales a las 7 de la mañana</h3>
-                        <p>Próximamente</p>
-                    </div>
-                </article>
-                <div class="viaje-coming">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <p>Próximo destino sin confirmar.<br>Ese es el plan.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ══════ BLOQUE 5: CONTACTO ══════ -->
-<section class="contacto" id="contacto">
-    <div class="container">
-        <div class="contacto-left">
-            <p class="label-section">Trabaja conmigo</p>
-            <h2>Sin formularios de 20 campos.<br>Sin esperas de semanas.</h2>
-            <p>Cuéntame dónde estás y qué necesitas. Si encajamos, te propongo cómo y cuánto en 48 horas.</p>
-            <div class="contacto-facts">
-                <div class="fact">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    <p>Respuesta garantizada en menos de 48h en días laborables.</p>
-                </div>
-                <div class="fact">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    <p>Presupuesto cerrado por escrito antes de empezar. Sin sorpresas.</p>
-                </div>
-                <div class="fact">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    <p>Solo trabajo con un número limitado de clientes para mantener la calidad.</p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <form class="contacto-form" id="miFormulario" name="contacto-trotant" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="contacto-trotant">
-                <input type="text" name="nombre" placeholder="Tu nombre y negocio" required autocomplete="name">
-                <input type="email" name="email" placeholder="Email de contacto" required autocomplete="email">
-
-                <!-- Label sr-only para accesibilidad del select -->
-                <label for="servicio-select" class="sr-only">Servicio de interés</label>
-                <select name="servicio" id="servicio-select">
-                    <option value="" disabled selected>¿Qué servicio te interesa?</option>
-                    <option value="sem-setup">SEM / Google Ads — Setup</option>
-                    <option value="sem-mensual">SEM / Google Ads — Gestión mensual</option>
-                    <option value="web">Página Web Turística</option>
-                    <option value="orientacion">No lo sé aún, quiero orientación</option>
-                </select>
-
-                <textarea name="mensaje" placeholder="Cuéntame brevemente tu situación actual y qué resultado buscas..." required></textarea>
-                <button type="submit" class="btn-submit">Enviar y esperar respuesta →</button>
-            </form>
-            <div id="form-ok" role="status">¡Recibido! Te escribo en menos de 48h.</div>
-        </div>
-    </div>
-</section>
+</div>
 
 <!-- ══════ FOOTER ══════ -->
 <footer>
     <div class="footer-logo">Trotant</div>
     <p>© 2026 Trotant · Marketing Digital Turístico por Saaid</p>
-    <p style="color: var(--text-dim); font-size: 0.72rem;">Valencia, España · Trabajando para el mundo</p>
+    <nav aria-label="Links del pie">
+        <a href="../index.html#marketing">Servicios</a>
+        <a href="../noticias.html">Noticias</a>
+        <a href="../index.html#contacto">Contacto</a>
+    </nav>
 </footer>
 
 <script>
@@ -683,7 +912,6 @@
     const menuBtn = document.getElementById('menuBtn');
     const navList = document.getElementById('navList');
     const menuIcon = menuBtn.querySelector('svg');
-
     menuBtn.addEventListener('click', () => {
         const isOpen = navList.classList.toggle('open');
         menuBtn.setAttribute('aria-expanded', isOpen);
@@ -697,34 +925,41 @@
         menuIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
     }));
 
-    // Tabs de servicios
-    document.querySelectorAll('.service-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.service-tab').forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            document.querySelectorAll('.service-panel').forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-        });
-    });
+    // Barra de progreso de lectura
+    const progressFill = document.getElementById('progressFill');
+    window.addEventListener('scroll', () => {
+        const body = document.body;
+        const html = document.documentElement;
+        const totalHeight = Math.max(body.scrollHeight, html.scrollHeight) - html.clientHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        progressFill.style.width = Math.min(progress, 100) + '%';
+    }, { passive: true });
 
-    // Formulario
-    const form = document.getElementById('miFormulario');
-    const formOk = document.getElementById('form-ok');
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(new FormData(form)).toString()
-        }).then(() => {
-            form.reset();
-            form.style.display = 'none';
-            formOk.style.display = 'block';
-        }).catch(err => alert('Error al enviar: ' + err));
+    // Tabla de contenidos activa según scroll
+    const tocLinks = document.querySelectorAll('#tocList a');
+    const sections = ['error-1','error-2','error-3','error-4','error-5','conclusion'].map(id => document.getElementById(id)).filter(Boolean);
+
+    const observerOptions = { rootMargin: '-20% 0px -70% 0px' };
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                });
+            }
+        });
+    }, observerOptions);
+    sections.forEach(s => observer.observe(s));
+
+    // Copiar enlace
+    document.getElementById('copyBtn').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+            setTimeout(() => {
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+            }, 2000);
+        });
     });
 </script>
 </body>
