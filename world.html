@@ -1,0 +1,3329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="World — Un atlas interactivo de viajes, lugares e investigaciones."
+  >
+
+  <meta name="theme-color" content="#05070b">
+
+  <title>World — Atlas interactivo</title>
+
+  <style>
+    /* ================================================================
+       WORLD
+       Atlas interactivo de viajes, lugares e investigaciones
+       ================================================================ */
+
+    :root {
+      color-scheme: dark;
+
+      --bg: #05070b;
+      --bg-soft: #0a0e15;
+      --panel: rgba(11, 15, 23, 0.78);
+      --panel-solid: #0c111a;
+      --panel-hover: rgba(255, 255, 255, 0.075);
+
+      --text: #f2efe8;
+      --text-soft: #a9adb5;
+      --text-faint: #6d737e;
+
+      --line: rgba(255, 255, 255, 0.11);
+      --line-strong: rgba(255, 255, 255, 0.2);
+
+      --accent: #ff6b3d;
+      --accent-soft: #ffc46b;
+      --accent-dark: #bb3d1c;
+      --blue: #79d7ff;
+      --green: #7ee1a2;
+
+      --danger: #ff5975;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+
+      --radius-xs: 8px;
+      --radius-sm: 14px;
+      --radius-md: 20px;
+      --radius-lg: 30px;
+
+      --header-height: 82px;
+      --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(53, 95, 128, 0.16), transparent 35%),
+        radial-gradient(circle at 15% 75%, rgba(134, 57, 29, 0.12), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    a {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent-soft);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      color: #111;
+      background: var(--accent-soft);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ================================================================
+       PORTADA
+       ================================================================ */
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(37, 72, 94, 0.2), transparent 35%),
+        linear-gradient(135deg, #05070b, #080b11 55%, #0b0e14);
+      transition:
+        opacity 900ms var(--ease),
+        visibility 900ms var(--ease);
+    }
+
+    .intro.is-leaving {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-noise {
+      position: absolute;
+      inset: -50%;
+      opacity: 0.055;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      animation: noiseShift 700ms steps(2) infinite;
+    }
+
+    @keyframes noiseShift {
+      0% {
+        transform: translate3d(-2%, 1%, 0);
+      }
+      50% {
+        transform: translate3d(1%, -1%, 0);
+      }
+      100% {
+        transform: translate3d(0, 2%, 0);
+      }
+    }
+
+    .intro-orbit {
+      position: absolute;
+      width: min(72vw, 760px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 50%;
+      transform: rotate(-18deg);
+      animation: orbit 24s linear infinite;
+    }
+
+    .intro-orbit::before {
+      content: "";
+      position: absolute;
+      top: 16%;
+      left: 7%;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow:
+        0 0 0 7px rgba(255, 107, 61, 0.12),
+        0 0 35px rgba(255, 107, 61, 0.8);
+    }
+
+    @keyframes orbit {
+      to {
+        transform: rotate(342deg);
+      }
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+      width: min(900px, calc(100% - 40px));
+      text-align: center;
+    }
+
+    .intro-kicker {
+      margin: 0 0 26px;
+      color: var(--text-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .world-trigger {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .world-trigger-text {
+      position: relative;
+      font-size: clamp(72px, 18vw, 220px);
+      font-weight: 800;
+      line-height: 0.78;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+      transition:
+        transform 600ms var(--ease),
+        color 600ms var(--ease);
+    }
+
+    .world-trigger-text::after {
+      content: "";
+      position: absolute;
+      right: -0.07em;
+      top: -0.01em;
+      width: 0.08em;
+      height: 0.08em;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 30px rgba(255, 107, 61, 0.6);
+    }
+
+    .world-trigger:hover .world-trigger-text {
+      color: #fff;
+      transform: scale(1.025);
+    }
+
+    .world-trigger-line {
+      width: 0;
+      height: 2px;
+      margin-top: 32px;
+      background: var(--accent);
+      transition: width 600ms var(--ease);
+    }
+
+    .world-trigger:hover .world-trigger-line {
+      width: 100%;
+    }
+
+    .intro-description {
+      max-width: 580px;
+      margin: 38px auto 0;
+      color: var(--text-soft);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(17px, 2vw, 22px);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .intro-enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 32px;
+      color: var(--text-faint);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .intro-enter span {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    /* ================================================================
+       APLICACIÓN PRINCIPAL
+       ================================================================ */
+
+    .atlas {
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.035);
+      transition:
+        opacity 1s var(--ease),
+        transform 1.2s var(--ease);
+    }
+
+    .atlas.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .space {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.35) 0 1px, transparent 1.3px),
+        radial-gradient(circle, rgba(255,255,255,.18) 0 1px, transparent 1.2px);
+      background-position: 0 0, 45px 70px;
+      background-size: 135px 135px, 210px 210px;
+      opacity: 0.32;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .aurora {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      top: -35vw;
+      right: 3vw;
+      border-radius: 50%;
+      background: rgba(93, 184, 255, 0.08);
+      filter: blur(80px);
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      pointer-events: none;
+    }
+
+    .topbar > * {
+      pointer-events: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 190px;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+    }
+
+    .brand-mark::before {
+      inset: 4px 10px;
+    }
+
+    .brand-mark::after {
+      inset: 10px 4px;
+    }
+
+    .brand-dot {
+      position: absolute;
+      right: -2px;
+      top: 2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy small {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-faint);
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .search-wrap {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      width: min(470px, calc(100vw - 520px));
+      transform: translateX(-50%);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      min-height: 46px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      background: rgba(8, 11, 17, 0.7);
+      box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+      transition:
+        border-color 250ms ease,
+        background 250ms ease,
+        box-shadow 250ms ease;
+    }
+
+    .search-box:focus-within {
+      border-color: rgba(255, 196, 107, 0.48);
+      background: rgba(11, 15, 23, 0.92);
+      box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.3),
+        0 0 0 4px rgba(255, 107, 61, 0.06);
+    }
+
+    .search-icon {
+      color: var(--text-faint);
+      font-size: 17px;
+    }
+
+    #searchInput {
+      flex: 1;
+      min-width: 0;
+      height: 42px;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 13px;
+    }
+
+    #searchInput::placeholder {
+      color: var(--text-faint);
+    }
+
+    .search-shortcut {
+      padding: 4px 7px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--text-faint);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .search-results {
+      position: absolute;
+      top: 54px;
+      left: 0;
+      right: 0;
+      max-height: min(430px, 65vh);
+      overflow-y: auto;
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(9, 13, 20, 0.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+    }
+
+    .search-result {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 12px;
+      color: var(--text);
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .search-result:hover,
+    .search-result.is-selected {
+      background: var(--panel-hover);
+    }
+
+    .result-index {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--accent-soft);
+      font-family: Georgia, serif;
+      font-size: 14px;
+    }
+
+    .result-copy {
+      min-width: 0;
+    }
+
+    .result-copy strong,
+    .result-copy small {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .result-copy strong {
+      font-size: 13px;
+    }
+
+    .result-copy small {
+      margin-top: 4px;
+      color: var(--text-faint);
+      font-size: 11px;
+    }
+
+    .result-type {
+      color: var(--text-faint);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .empty-results {
+      padding: 28px 16px;
+      color: var(--text-soft);
+      text-align: center;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      min-width: 190px;
+    }
+
+    .round-button,
+    .text-button {
+      border: 1px solid var(--line);
+      background: rgba(9, 13, 20, 0.68);
+      backdrop-filter: blur(16px);
+      cursor: pointer;
+      transition:
+        background 200ms ease,
+        border-color 200ms ease,
+        transform 200ms ease;
+    }
+
+    .round-button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .round-button:hover,
+    .text-button:hover {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .text-button {
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       ESCENA Y GLOBO
+       ================================================================ */
+
+    .world-stage {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    #globeCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    #globeCanvas.is-dragging {
+      cursor: grabbing;
+    }
+
+    .globe-label {
+      position: absolute;
+      z-index: 4;
+      left: 50%;
+      bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-faint);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .globe-label::before,
+    .globe-label::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .coordinate-readout {
+      position: absolute;
+      z-index: 5;
+      right: 24px;
+      bottom: 27px;
+      color: var(--text-faint);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 9px;
+      letter-spacing: 0.09em;
+      pointer-events: none;
+    }
+
+    .legend {
+      position: absolute;
+      z-index: 5;
+      left: 24px;
+      bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--text-faint);
+      background: rgba(8, 11, 17, 0.55);
+      backdrop-filter: blur(14px);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .legend-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .legend-dot.research {
+      background: var(--blue);
+      box-shadow: 0 0 8px var(--blue);
+    }
+
+    .legend-dot.favorite {
+      background: var(--accent-soft);
+      box-shadow: 0 0 8px var(--accent-soft);
+    }
+
+    .controls {
+      position: absolute;
+      z-index: 7;
+      right: 24px;
+      top: 50%;
+      display: grid;
+      gap: 8px;
+      transform: translateY(-50%);
+    }
+
+    .control-group {
+      display: grid;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(8, 11, 17, 0.65);
+      backdrop-filter: blur(14px);
+    }
+
+    .control-button {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--text-soft);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .control-button:last-child {
+      border-bottom: 0;
+    }
+
+    .control-button:hover {
+      color: var(--text);
+      background: var(--panel-hover);
+    }
+
+    /* ================================================================
+       NAVEGADOR DE DESTINOS
+       ================================================================ */
+
+    .places-drawer {
+      position: absolute;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(390px, 92vw);
+      padding: 24px;
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      background: rgba(8, 11, 17, 0.93);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(26px);
+      transform: translateX(-105%);
+      transition: transform 500ms var(--ease);
+    }
+
+    .places-drawer.is-open {
+      transform: translateX(0);
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .drawer-head h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 31px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .drawer-head p {
+      margin: 8px 0 0;
+      color: var(--text-faint);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .filters {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-button {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--text-faint);
+      background: transparent;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .filter-button.is-active {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(255, 107, 61, 0.12);
+    }
+
+    .place-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .place-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 50px minmax(0, 1fr) auto;
+      gap: 13px;
+      align-items: center;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.025);
+      text-align: left;
+      cursor: pointer;
+      transition:
+        border-color 200ms ease,
+        background 200ms ease,
+        transform 200ms ease;
+    }
+
+    .place-card:hover {
+      border-color: var(--line);
+      background: var(--panel-hover);
+      transform: translateX(3px);
+    }
+
+    .place-number {
+      display: grid;
+      place-items: center;
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--accent-soft);
+      font-family: Georgia, serif;
+      font-size: 16px;
+    }
+
+    .place-card-copy {
+      min-width: 0;
+    }
+
+    .place-card-copy strong,
+    .place-card-copy span {
+      display: block;
+    }
+
+    .place-card-copy strong {
+      overflow: hidden;
+      font-size: 13px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .place-card-copy span {
+      margin-top: 5px;
+      color: var(--text-faint);
+      font-size: 10px;
+    }
+
+    .place-arrow {
+      color: var(--text-faint);
+      transition: transform 200ms ease;
+    }
+
+    .place-card:hover .place-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .drawer-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .drawer-stat {
+      padding: 13px 8px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .drawer-stat strong,
+    .drawer-stat span {
+      display: block;
+    }
+
+    .drawer-stat strong {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .drawer-stat span {
+      margin-top: 4px;
+      color: var(--text-faint);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       FICHA DE DESTINO
+       ================================================================ */
+
+    .detail-panel {
+      position: absolute;
+      z-index: 30;
+      top: 16px;
+      right: 16px;
+      bottom: 16px;
+      width: min(430px, calc(100vw - 32px));
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(9, 13, 20, 0.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(26px);
+      transform: translateX(calc(100% + 40px));
+      transition: transform 560ms var(--ease);
+    }
+
+    .detail-panel.is-open {
+      transform: translateX(0);
+    }
+
+    .detail-scroll {
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .detail-hero {
+      position: relative;
+      min-height: 250px;
+      padding: 22px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 25%, var(--place-color, #ff6b3d), transparent 46%),
+        linear-gradient(155deg, #16202c, #0a0e15 72%);
+    }
+
+    .detail-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(9, 13, 20, 0.95), transparent 60%),
+        repeating-linear-gradient(
+          120deg,
+          transparent,
+          transparent 18px,
+          rgba(255, 255, 255, 0.015) 19px,
+          transparent 20px
+        );
+    }
+
+    .detail-actions {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .detail-action-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .detail-title {
+      position: absolute;
+      z-index: 3;
+      left: 22px;
+      right: 22px;
+      bottom: 20px;
+    }
+
+    .detail-number {
+      color: var(--accent-soft);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .detail-title h2 {
+      margin: 8px 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(35px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+    }
+
+    .detail-location {
+      margin-top: 11px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .detail-content {
+      padding: 24px 24px 34px;
+    }
+
+    .detail-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-meta-item {
+      padding: 15px 10px;
+      border-right: 1px solid var(--line);
+    }
+
+    .detail-meta-item:first-child {
+      padding-left: 0;
+    }
+
+    .detail-meta-item:last-child {
+      border-right: 0;
+    }
+
+    .detail-meta-item small,
+    .detail-meta-item strong {
+      display: block;
+    }
+
+    .detail-meta-item small {
+      color: var(--text-faint);
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .detail-meta-item strong {
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .detail-lead {
+      margin: 24px 0 0;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.52;
+    }
+
+    .detail-description {
+      margin: 17px 0 0;
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.78;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--text-faint);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .detail-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 54px;
+      margin-top: 25px;
+      padding: 0 17px;
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      color: var(--text);
+      background: rgba(255, 107, 61, 0.11);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        background 200ms ease,
+        transform 200ms ease;
+    }
+
+    .detail-link:hover {
+      background: rgba(255, 107, 61, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .detail-link span:last-child {
+      color: var(--accent-soft);
+      font-size: 18px;
+    }
+
+    /* ================================================================
+       AYUDA Y NOTIFICACIONES
+       ================================================================ */
+
+    .modal-backdrop {
+      position: absolute;
+      z-index: 25;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      visibility: hidden;
+      backdrop-filter: blur(3px);
+      transition:
+        opacity 300ms ease,
+        visibility 300ms ease;
+    }
+
+    .modal-backdrop.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .help-modal {
+      position: absolute;
+      z-index: 40;
+      top: 50%;
+      left: 50%;
+      width: min(470px, calc(100vw - 32px));
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(9, 13, 20, 0.97);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, -45%) scale(0.96);
+      transition:
+        opacity 300ms ease,
+        visibility 300ms ease,
+        transform 400ms var(--ease);
+    }
+
+    .help-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .help-modal h2 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 31px;
+      font-weight: 400;
+    }
+
+    .help-modal > p {
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .shortcut-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .shortcut-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .shortcut-row kbd {
+      min-width: 29px;
+      padding: 5px 8px;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .toast-region {
+      position: absolute;
+      z-index: 60;
+      left: 50%;
+      bottom: 70px;
+      display: grid;
+      gap: 8px;
+      width: min(360px, calc(100vw - 32px));
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .toast {
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--text);
+      background: rgba(10, 14, 21, 0.92);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(18px);
+      font-size: 11px;
+      text-align: center;
+      animation:
+        toastIn 400ms var(--ease),
+        toastOut 400ms var(--ease) 2.7s forwards;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+      }
+    }
+
+    @keyframes toastOut {
+      to {
+        opacity: 0;
+        transform: translateY(8px) scale(0.97);
+      }
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+
+    @media (max-width: 900px) {
+      .brand-copy {
+        display: none;
+      }
+
+      .brand {
+        min-width: 42px;
+      }
+
+      .top-actions {
+        min-width: auto;
+      }
+
+      .top-actions .text-button {
+        display: none;
+      }
+
+      .search-wrap {
+        left: 82px;
+        width: calc(100vw - 148px);
+        transform: none;
+      }
+
+      .search-shortcut {
+        display: none;
+      }
+
+      .legend {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --header-height: 70px;
+      }
+
+      .topbar {
+        padding: 13px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .search-wrap {
+        top: 12px;
+        left: 62px;
+        width: calc(100vw - 116px);
+      }
+
+      .search-box {
+        min-height: 44px;
+        padding: 0 12px;
+      }
+
+      .top-actions {
+        position: absolute;
+        right: 8px;
+      }
+
+      .top-actions .round-button:not(#helpButton) {
+        display: none;
+      }
+
+      #helpButton {
+        width: 38px;
+        height: 38px;
+      }
+
+      .controls {
+        top: auto;
+        right: 13px;
+        bottom: 68px;
+        transform: none;
+      }
+
+      .globe-label {
+        bottom: 18px;
+      }
+
+      .coordinate-readout {
+        display: none;
+      }
+
+      .detail-panel {
+        top: auto;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        width: auto;
+        max-height: 79vh;
+        border-radius: 24px;
+        transform: translateY(calc(100% + 30px));
+      }
+
+      .detail-panel.is-open {
+        transform: translateY(0);
+      }
+
+      .detail-hero {
+        min-height: 210px;
+      }
+
+      .places-drawer {
+        padding: 20px;
+      }
+
+      .intro-description {
+        max-width: 330px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===============================================================
+       PORTADA
+       =============================================================== -->
+
+  <section class="intro" id="intro" aria-label="Entrar en World">
+    <div class="intro-noise"></div>
+    <div class="intro-orbit"></div>
+
+    <div class="intro-content">
+      <p class="intro-kicker">Historias · viajes · investigación</p>
+
+      <button class="world-trigger" id="worldTrigger" aria-label="Abrir el atlas">
+        <span class="world-trigger-text">World</span>
+        <span class="world-trigger-line"></span>
+      </button>
+
+      <p class="intro-description">
+        Un archivo vivo de los lugares que he recorrido,
+        las preguntas que me persiguen y las historias que merecen ser contadas.
+      </p>
+
+      <div class="intro-enter">
+        Haz clic para explorar <span>↗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================================================
+       ATLAS
+       =============================================================== -->
+
+  <main class="atlas" id="atlas">
+    <div class="space" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="aurora"></div>
+    </div>
+
+    <header class="topbar">
+      <div class="brand" aria-label="World">
+        <div class="brand-mark">
+          <span class="brand-dot"></span>
+        </div>
+
+        <div class="brand-copy">
+          <strong>World</strong>
+          <small>A living atlas</small>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <label class="sr-only" for="searchInput">
+          Buscar países, ciudades o temas
+        </label>
+
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+
+          <input
+            id="searchInput"
+            type="search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Buscar países, lugares o historias…"
+          >
+
+          <span class="search-shortcut">⌘ K</span>
+        </div>
+
+        <div
+          class="search-results hidden"
+          id="searchResults"
+          role="listbox"
+          aria-label="Resultados de búsqueda"
+        ></div>
+      </div>
+
+      <div class="top-actions">
+        <button class="text-button" id="placesButton">
+          Destinos
+        </button>
+
+        <button
+          class="round-button"
+          id="helpButton"
+          aria-label="Abrir ayuda"
+          title="Ayuda"
+        >
+          ?
+        </button>
+      </div>
+    </header>
+
+    <section class="world-stage" aria-label="Globo interactivo">
+      <canvas id="globeCanvas"></canvas>
+
+      <div class="controls" aria-label="Controles del mapa">
+        <div class="control-group">
+          <button class="control-button" id="zoomInButton" aria-label="Acercar">
+            +
+          </button>
+
+          <button class="control-button" id="zoomOutButton" aria-label="Alejar">
+            −
+          </button>
+        </div>
+
+        <div class="control-group">
+          <button
+            class="control-button"
+            id="resetButton"
+            aria-label="Restablecer posición"
+            title="Restablecer"
+          >
+            ◎
+          </button>
+
+          <button
+            class="control-button"
+            id="rotationButton"
+            aria-label="Detener rotación"
+            title="Rotación automática"
+          >
+            ↻
+          </button>
+        </div>
+      </div>
+
+      <div class="legend" aria-hidden="true">
+        <span class="legend-item">
+          <i class="legend-dot"></i>
+          Viajes
+        </span>
+
+        <span class="legend-item">
+          <i class="legend-dot research"></i>
+          Investigación
+        </span>
+
+        <span class="legend-item">
+          <i class="legend-dot favorite"></i>
+          Favoritos
+        </span>
+      </div>
+
+      <div class="globe-label">
+        Arrastra para explorar
+      </div>
+
+      <div class="coordinate-readout" id="coordinateReadout">
+        40.4168° N · 3.7038° W
+      </div>
+    </section>
+
+    <!-- LISTADO LATERAL -->
+
+    <aside
+      class="places-drawer"
+      id="placesDrawer"
+      aria-label="Explorar destinos"
+      aria-hidden="true"
+    >
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">Índice del atlas</p>
+          <h2>Explorar</h2>
+          <p>Viajes, notas de campo e investigaciones.</p>
+        </div>
+
+        <button
+          class="round-button"
+          id="closeDrawerButton"
+          aria-label="Cerrar destinos"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter-button is-active" data-filter="all">
+          Todo
+        </button>
+
+        <button class="filter-button" data-filter="travel">
+          Viajes
+        </button>
+
+        <button class="filter-button" data-filter="research">
+          Investigación
+        </button>
+
+        <button class="filter-button" data-filter="favorite">
+          Favoritos
+        </button>
+      </div>
+
+      <div class="place-list" id="placeList"></div>
+
+      <div class="drawer-stats">
+        <div class="drawer-stat">
+          <strong id="countryCount">0</strong>
+          <span>Países</span>
+        </div>
+
+        <div class="drawer-stat">
+          <strong id="storyCount">0</strong>
+          <span>Historias</span>
+        </div>
+
+        <div class="drawer-stat">
+          <strong id="visitedCount">0</strong>
+          <span>Leídas</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FICHA INDIVIDUAL -->
+
+    <aside
+      class="detail-panel"
+      id="detailPanel"
+      aria-label="Información del destino"
+      aria-hidden="true"
+    >
+      <div class="detail-scroll">
+        <div class="detail-hero" id="detailHero">
+          <div class="detail-actions">
+            <button
+              class="round-button"
+              id="closeDetailButton"
+              aria-label="Cerrar ficha"
+            >
+              ×
+            </button>
+
+            <div class="detail-action-group">
+              <button
+                class="round-button"
+                id="favoriteButton"
+                aria-label="Añadir a favoritos"
+                title="Favorito"
+              >
+                ♡
+              </button>
+
+              <button
+                class="round-button"
+                id="shareButton"
+                aria-label="Compartir historia"
+                title="Compartir"
+              >
+                ↗
+              </button>
+            </div>
+          </div>
+
+          <div class="detail-title">
+            <div class="detail-number" id="detailNumber"></div>
+            <h2 id="detailTitle"></h2>
+            <div class="detail-location" id="detailLocation"></div>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <div class="detail-meta">
+            <div class="detail-meta-item">
+              <small>Tipo</small>
+              <strong id="detailType"></strong>
+            </div>
+
+            <div class="detail-meta-item">
+              <small>Fecha</small>
+              <strong id="detailDate"></strong>
+            </div>
+
+            <div class="detail-meta-item">
+              <small>Lectura</small>
+              <strong id="detailReading"></strong>
+            </div>
+          </div>
+
+          <p class="detail-lead" id="detailLead"></p>
+          <p class="detail-description" id="detailDescription"></p>
+
+          <div class="tag-list" id="detailTags"></div>
+
+          <a class="detail-link" id="detailLink" href="#">
+            <span>Leer la historia completa</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- AYUDA -->
+
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <section
+      class="help-modal"
+      id="helpModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="helpTitle"
+    >
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">Cómo navegar</p>
+          <h2 id="helpTitle">Explora el mundo</h2>
+        </div>
+
+        <button
+          class="round-button"
+          id="closeHelpButton"
+          aria-label="Cerrar ayuda"
+        >
+          ×
+        </button>
+      </div>
+
+      <p>
+        Arrastra el globo, utiliza la rueda para acercarte y pulsa una
+        chincheta para abrir su historia.
+      </p>
+
+      <div class="shortcut-list">
+        <div class="shortcut-row">
+          <span>Abrir el buscador</span>
+          <kbd>⌘ K</kbd>
+        </div>
+
+        <div class="shortcut-row">
+          <span>Mostrar destinos</span>
+          <kbd>L</kbd>
+        </div>
+
+        <div class="shortcut-row">
+          <span>Pausar la rotación</span>
+          <kbd>R</kbd>
+        </div>
+
+        <div class="shortcut-row">
+          <span>Cerrar ventanas</span>
+          <kbd>Esc</kbd>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="toast-region"
+      id="toastRegion"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </main>
+
+  <script>
+    "use strict";
+
+    /* ================================================================
+       CONFIGURACIÓN DE DESTINOS
+
+       Para añadir una chincheta:
+       1. Copia uno de los objetos.
+       2. Cambia latitud y longitud.
+       3. Cambia url por la página real de la historia.
+       4. Usa type: "travel" o type: "research".
+       ================================================================ */
+
+    const DESTINATIONS = [
+      {
+        id: "madrid-nocturno",
+        title: "Madrid nocturno",
+        city: "Madrid",
+        country: "España",
+        continent: "Europa",
+        lat: 40.4168,
+        lon: -3.7038,
+        type: "travel",
+        date: "Mayo 2025",
+        readingTime: "8 min",
+        color: "#ff744c",
+        lead: "Una ciudad distinta aparece cuando las terrazas cierran y las calles dejan de interpretar su papel.",
+        description:
+          "Un recorrido por el Madrid que existe entre la última conversación de la noche y el primer metro de la mañana. Fotografías, notas, arquitectura y pequeñas historias encontradas sin buscarlas.",
+        tags: ["ciudad", "fotografía", "arquitectura", "noche"],
+        url: "viajes/madrid-nocturno.html"
+      },
+      {
+        id: "islandia-hielo",
+        title: "El lenguaje del hielo",
+        city: "Jökulsárlón",
+        country: "Islandia",
+        continent: "Europa",
+        lat: 64.0784,
+        lon: -16.2306,
+        type: "research",
+        date: "Febrero 2025",
+        readingTime: "12 min",
+        color: "#6ed6ff",
+        lead: "Los glaciares no son paisajes inmóviles: son archivos que se derriten delante de nosotros.",
+        description:
+          "Una investigación visual sobre el retroceso del hielo, el turismo climático y las formas en que medimos una transformación que parece lenta hasta que deja de serlo.",
+        tags: ["clima", "hielo", "ciencia", "paisaje"],
+        url: "investigaciones/el-lenguaje-del-hielo.html"
+      },
+      {
+        id: "tokio-silencio",
+        title: "Tokio y el silencio",
+        city: "Tokio",
+        country: "Japón",
+        continent: "Asia",
+        lat: 35.6762,
+        lon: 139.6503,
+        type: "travel",
+        date: "Octubre 2024",
+        readingTime: "10 min",
+        color: "#ff658c",
+        lead: "Veinte millones de personas pueden compartir una ciudad sin convertir cada momento en ruido.",
+        description:
+          "Notas sobre los códigos invisibles del transporte, los pequeños bares de Shinjuku, las máquinas que nunca duermen y la extraña intimidad de una megaciudad.",
+        tags: ["urbanismo", "cultura", "transporte", "Japón"],
+        url: "viajes/tokio-y-el-silencio.html"
+      },
+      {
+        id: "oaxaca-maiz",
+        title: "La memoria del maíz",
+        city: "Oaxaca",
+        country: "México",
+        continent: "América",
+        lat: 17.0732,
+        lon: -96.7266,
+        type: "research",
+        date: "Agosto 2024",
+        readingTime: "14 min",
+        color: "#ffc05a",
+        lead: "Una semilla puede contener una cocina, una economía y una forma completa de comprender el territorio.",
+        description:
+          "Conversaciones con cocineras, agricultores y vendedores para entender por qué el maíz es mucho más que un alimento y qué está en juego cuando desaparece una variedad local.",
+        tags: ["gastronomía", "agricultura", "memoria", "México"],
+        url: "investigaciones/la-memoria-del-maiz.html"
+      },
+      {
+        id: "cusco-altura",
+        title: "Aprender la altura",
+        city: "Cusco",
+        country: "Perú",
+        continent: "América",
+        lat: -13.5319,
+        lon: -71.9675,
+        type: "travel",
+        date: "Junio 2024",
+        readingTime: "7 min",
+        color: "#f39358",
+        lead: "En los Andes, caminar también significa negociar con el aire.",
+        description:
+          "Diario de una ruta lenta por Cusco y el Valle Sagrado: caminos antiguos, mercados, piedra, cansancio y la escala vertical de una cultura construida en las montañas.",
+        tags: ["montaña", "historia", "senderismo", "Perú"],
+        url: "viajes/aprender-la-altura.html"
+      },
+      {
+        id: "marrakech-color",
+        title: "La ciudad del color",
+        city: "Marrakech",
+        country: "Marruecos",
+        continent: "África",
+        lat: 31.6295,
+        lon: -7.9811,
+        type: "travel",
+        date: "Marzo 2024",
+        readingTime: "9 min",
+        color: "#ff754b",
+        lead: "Marrakech no se recorre en línea recta: se sigue como se sigue un olor o una voz.",
+        description:
+          "Un ensayo fotográfico sobre la medina, los oficios, el color mineral de sus muros y la tensión constante entre la vida cotidiana y la ciudad imaginada por el visitante.",
+        tags: ["artesanía", "fotografía", "medina", "Marruecos"],
+        url: "viajes/la-ciudad-del-color.html"
+      },
+      {
+        id: "nairobi-futuro",
+        title: "El futuro se ensaya aquí",
+        city: "Nairobi",
+        country: "Kenia",
+        continent: "África",
+        lat: -1.2921,
+        lon: 36.8219,
+        type: "research",
+        date: "Enero 2024",
+        readingTime: "16 min",
+        color: "#72d49a",
+        lead: "En Nairobi, la tecnología se diseña alrededor de problemas que gran parte del mundo todavía no sabe mirar.",
+        description:
+          "Una aproximación a los laboratorios tecnológicos, sistemas de pago móvil y proyectos urbanos que están cambiando la imagen tradicional de la innovación africana.",
+        tags: ["tecnología", "ciudades", "innovación", "Kenia"],
+        url: "investigaciones/nairobi-futuro.html"
+      },
+      {
+        id: "svalbard-archivo",
+        title: "El archivo del fin",
+        city: "Svalbard",
+        country: "Noruega",
+        continent: "Europa",
+        lat: 78.2232,
+        lon: 15.6469,
+        type: "research",
+        date: "Noviembre 2023",
+        readingTime: "18 min",
+        color: "#7bcfff",
+        lead: "En una montaña del Ártico guardamos semillas para un futuro que esperamos no necesitar.",
+        description:
+          "La bóveda global de semillas como punto de partida para investigar biodiversidad, seguridad alimentaria y nuestra peculiar necesidad de construir copias de seguridad del planeta.",
+        tags: ["Ártico", "semillas", "futuro", "biodiversidad"],
+        url: "investigaciones/el-archivo-del-fin.html"
+      }
+    ];
+
+    /* ================================================================
+       CONTINENTES SIMPLIFICADOS
+
+       Estas coordenadas se proyectan sobre la esfera. No son fronteras
+       políticas: funcionan como una representación editorial del planeta.
+       ================================================================ */
+
+    const LANDMASSES = [
+      [
+        [-168, 70], [-150, 64], [-140, 59], [-130, 55], [-124, 48],
+        [-124, 38], [-116, 32], [-106, 25], [-97, 19], [-90, 20],
+        [-85, 29], [-80, 31], [-75, 39], [-67, 46], [-58, 51],
+        [-62, 58], [-76, 64], [-95, 70], [-120, 73], [-145, 72]
+      ],
+      [
+        [-81, 12], [-75, 8], [-70, 1], [-65, -10], [-60, -20],
+        [-55, -31], [-61, -43], [-70, -54], [-75, -42], [-77, -27],
+        [-80, -10], [-81, 2]
+      ],
+      [
+        [-10, 36], [-4, 44], [4, 51], [15, 57], [30, 60],
+        [45, 67], [65, 70], [92, 74], [120, 68], [145, 57],
+        [160, 50], [150, 41], [125, 35], [112, 20], [103, 9],
+        [92, 7], [80, 18], [68, 24], [53, 25], [42, 34],
+        [31, 37], [24, 33], [15, 38], [7, 43], [-1, 43]
+      ],
+      [
+        [-17, 36], [-5, 35], [8, 32], [22, 31], [34, 26],
+        [43, 12], [50, 3], [44, -12], [35, -22], [27, -34],
+        [18, -35], [10, -30], [2, -21], [-6, -5], [-12, 8],
+        [-17, 22]
+      ],
+      [
+        [112, -11], [128, -14], [142, -11], [153, -24],
+        [146, -39], [130, -43], [115, -35], [111, -22]
+      ],
+      [
+        [-52, 59], [-44, 61], [-38, 68], [-45, 79],
+        [-60, 82], [-70, 76], [-63, 65]
+      ]
+    ];
+
+    /* ================================================================
+       REFERENCIAS DEL DOM
+       ================================================================ */
+
+    const $ = (selector, scope = document) => scope.querySelector(selector);
+    const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+    const intro = $("#intro");
+    const worldTrigger = $("#worldTrigger");
+    const atlas = $("#atlas");
+
+    const canvas = $("#globeCanvas");
+    const context = canvas.getContext("2d");
+
+    const searchInput = $("#searchInput");
+    const searchResults = $("#searchResults");
+
+    const placesDrawer = $("#placesDrawer");
+    const placeList = $("#placeList");
+
+    const detailPanel = $("#detailPanel");
+    const detailHero = $("#detailHero");
+    const detailNumber = $("#detailNumber");
+    const detailTitle = $("#detailTitle");
+    const detailLocation = $("#detailLocation");
+    const detailType = $("#detailType");
+    const detailDate = $("#detailDate");
+    const detailReading = $("#detailReading");
+    const detailLead = $("#detailLead");
+    const detailDescription = $("#detailDescription");
+    const detailTags = $("#detailTags");
+    const detailLink = $("#detailLink");
+
+    const favoriteButton = $("#favoriteButton");
+    const coordinateReadout = $("#coordinateReadout");
+
+    const helpModal = $("#helpModal");
+    const modalBackdrop = $("#modalBackdrop");
+    const toastRegion = $("#toastRegion");
+
+    /* ================================================================
+       ESTADO
+       ================================================================ */
+
+    const state = {
+      width: 0,
+      height: 0,
+      dpr: 1,
+
+      rotation: -0.35,
+      pitch: 0.12,
+      zoom: 1,
+
+      targetRotation: null,
+      targetPitch: null,
+
+      velocityX: 0,
+      velocityY: 0,
+
+      pointerDown: false,
+      pointerMoved: false,
+      pointerId: null,
+      previousX: 0,
+      previousY: 0,
+      pointerX: 0,
+      pointerY: 0,
+
+      autoRotate: true,
+      introOpened: false,
+      activePlace: null,
+      activeFilter: "all",
+      selectedSearchIndex: -1,
+
+      pinHitAreas: [],
+
+      favorites: new Set(
+        JSON.parse(localStorage.getItem("world:favorites") || "[]")
+      ),
+
+      visited: new Set(
+        JSON.parse(localStorage.getItem("world:visited") || "[]")
+      )
+    };
+
+    /* ================================================================
+       FUNCIONES GENERALES
+       ================================================================ */
+
+    const clamp = (value, min, max) =>
+      Math.min(max, Math.max(min, value));
+
+    const radians = degrees =>
+      degrees * Math.PI / 180;
+
+    const degrees = radiansValue =>
+      radiansValue * 180 / Math.PI;
+
+    const normalizeText = value =>
+      value
+        .toLocaleLowerCase("es")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    const escapeHTML = value =>
+      String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    function saveSet(key, set) {
+      localStorage.setItem(key, JSON.stringify([...set]));
+    }
+
+    function showToast(message) {
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      toastRegion.appendChild(toast);
+
+      window.setTimeout(() => {
+        toast.remove();
+      }, 3200);
+    }
+
+    /* ================================================================
+       PROYECCIÓN 3D
+       ================================================================ */
+
+    function getGlobeMetrics() {
+      const mobileAdjustment = state.width < 640 ? 0.91 : 1;
+
+      const radius =
+        Math.min(state.width, state.height) *
+        0.32 *
+        state.zoom *
+        mobileAdjustment;
+
+      const centerX =
+        state.width < 900 || !detailPanel.classList.contains("is-open")
+          ? state.width * 0.5
+          : state.width * 0.43;
+
+      const centerY =
+        state.height * (state.width < 640 ? 0.48 : 0.53);
+
+      return {
+        radius,
+        centerX,
+        centerY
+      };
+    }
+
+    function project(lat, lon) {
+      const { radius, centerX, centerY } = getGlobeMetrics();
+
+      const latitude = radians(lat);
+      const longitude = radians(lon) + state.rotation;
+
+      const baseX = Math.cos(latitude) * Math.sin(longitude);
+      const baseY = Math.sin(latitude);
+      const baseZ = Math.cos(latitude) * Math.cos(longitude);
+
+      const cosPitch = Math.cos(state.pitch);
+      const sinPitch = Math.sin(state.pitch);
+
+      const rotatedY = baseY * cosPitch - baseZ * sinPitch;
+      const rotatedZ = baseY * sinPitch + baseZ * cosPitch;
+
+      return {
+        x: centerX + baseX * radius,
+        y: centerY - rotatedY * radius,
+        z: rotatedZ,
+        scale: 0.72 + rotatedZ * 0.28,
+        visible: rotatedZ > 0.015
+      };
+    }
+
+    function inverseProject(screenX, screenY) {
+      const { radius, centerX, centerY } = getGlobeMetrics();
+
+      const x = (screenX - centerX) / radius;
+      const y = -(screenY - centerY) / radius;
+      const lengthSquared = x * x + y * y;
+
+      if (lengthSquared > 1) {
+        return null;
+      }
+
+      const z = Math.sqrt(1 - lengthSquared);
+
+      const cosPitch = Math.cos(-state.pitch);
+      const sinPitch = Math.sin(-state.pitch);
+
+      const originalY = y * cosPitch - z * sinPitch;
+      const originalZ = y * sinPitch + z * cosPitch;
+
+      const latitude = Math.asin(clamp(originalY, -1, 1));
+      const longitude = Math.atan2(x, originalZ) - state.rotation;
+
+      return {
+        lat: degrees(latitude),
+        lon: ((degrees(longitude) + 540) % 360) - 180
+      };
+    }
+
+    /* ================================================================
+       DIBUJO DEL GLOBO
+       ================================================================ */
+
+    function resizeCanvas() {
+      const rectangle = canvas.getBoundingClientRect();
+
+      state.width = rectangle.width;
+      state.height = rectangle.height;
+      state.dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.round(state.width * state.dpr);
+      canvas.height = Math.round(state.height * state.dpr);
+
+      context.setTransform(
+        state.dpr,
+        0,
+        0,
+        state.dpr,
+        0,
+        0
+      );
+    }
+
+    function drawAtmosphere() {
+      const { radius, centerX, centerY } = getGlobeMetrics();
+
+      const glow = context.createRadialGradient(
+        centerX,
+        centerY,
+        radius * 0.65,
+        centerX,
+        centerY,
+        radius * 1.24
+      );
+
+      glow.addColorStop(0, "rgba(66, 140, 190, 0)");
+      glow.addColorStop(0.72, "rgba(64, 151, 211, 0)");
+      glow.addColorStop(0.86, "rgba(90, 187, 249, 0.08)");
+      glow.addColorStop(1, "rgba(80, 160, 220, 0)");
+
+      context.fillStyle = glow;
+      context.beginPath();
+      context.arc(centerX, centerY, radius * 1.25, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    function drawOcean() {
+      const { radius, centerX, centerY } = getGlobeMetrics();
+
+      const ocean = context.createRadialGradient(
+        centerX - radius * 0.33,
+        centerY - radius * 0.38,
+        radius * 0.03,
+        centerX,
+        centerY,
+        radius
+      );
+
+      ocean.addColorStop(0, "#203a4c");
+      ocean.addColorStop(0.35, "#122535");
+      ocean.addColorStop(0.75, "#09141f");
+      ocean.addColorStop(1, "#050a10");
+
+      context.save();
+
+      context.shadowColor = "rgba(77, 168, 225, 0.2)";
+      context.shadowBlur = 34;
+      context.fillStyle = ocean;
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      context.fill();
+
+      context.shadowBlur = 0;
+      context.strokeStyle = "rgba(153, 215, 255, 0.23)";
+      context.lineWidth = 1.1;
+      context.stroke();
+
+      context.restore();
+    }
+
+    function drawGraticules() {
+      context.save();
+      context.strokeStyle = "rgba(151, 202, 232, 0.09)";
+      context.lineWidth = 0.75;
+
+      for (let latitude = -60; latitude <= 60; latitude += 20) {
+        drawGeoLine(
+          Array.from(
+            { length: 91 },
+            (_, index) => [-180 + index * 4, latitude]
+          )
+        );
+      }
+
+      for (let longitude = -180; longitude < 180; longitude += 20) {
+        drawGeoLine(
+          Array.from(
+            { length: 46 },
+            (_, index) => [longitude, -90 + index * 4]
+          )
+        );
+      }
+
+      context.restore();
+    }
+
+    function drawGeoLine(coordinates) {
+      context.beginPath();
+
+      let drawing = false;
+      let previousPoint = null;
+
+      for (const [lon, lat] of coordinates) {
+        const point = project(lat, lon);
+
+        if (!point.visible) {
+          drawing = false;
+          previousPoint = null;
+          continue;
+        }
+
+        if (
+          previousPoint &&
+          Math.hypot(point.x - previousPoint.x, point.y - previousPoint.y) > 45
+        ) {
+          drawing = false;
+        }
+
+        if (!drawing) {
+          context.moveTo(point.x, point.y);
+          drawing = true;
+        } else {
+          context.lineTo(point.x, point.y);
+        }
+
+        previousPoint = point;
+      }
+
+      context.stroke();
+    }
+
+    function drawLandmasses() {
+      context.save();
+
+      context.fillStyle = "rgba(112, 138, 137, 0.48)";
+      context.strokeStyle = "rgba(188, 216, 207, 0.22)";
+      context.lineWidth = 0.9;
+
+      for (const polygon of LANDMASSES) {
+        const densePolygon = densifyPolygon(polygon);
+
+        context.beginPath();
+
+        let drawing = false;
+        let firstVisible = null;
+
+        for (const [lon, lat] of densePolygon) {
+          const point = project(lat, lon);
+
+          if (!point.visible) {
+            drawing = false;
+            continue;
+          }
+
+          if (!drawing) {
+            context.moveTo(point.x, point.y);
+            firstVisible = point;
+            drawing = true;
+          } else {
+            context.lineTo(point.x, point.y);
+          }
+        }
+
+        if (firstVisible) {
+          context.closePath();
+          context.fill();
+          context.stroke();
+        }
+      }
+
+      context.restore();
+    }
+
+    function densifyPolygon(points) {
+      const dense = [];
+
+      for (let index = 0; index < points.length; index++) {
+        const current = points[index];
+        const next = points[(index + 1) % points.length];
+
+        const lonDifference = next[0] - current[0];
+        const latDifference = next[1] - current[1];
+
+        const steps = Math.max(
+          2,
+          Math.ceil(
+            Math.max(
+              Math.abs(lonDifference),
+              Math.abs(latDifference)
+            ) / 3
+          )
+        );
+
+        for (let step = 0; step < steps; step++) {
+          const progress = step / steps;
+
+          dense.push([
+            current[0] + lonDifference * progress,
+            current[1] + latDifference * progress
+          ]);
+        }
+      }
+
+      return dense;
+    }
+
+    function drawPins(time) {
+      state.pinHitAreas = [];
+
+      const sortedPlaces = DESTINATIONS
+        .map((place, index) => ({
+          place,
+          index,
+          point: project(place.lat, place.lon)
+        }))
+        .filter(item => item.point.visible)
+        .sort((a, b) => a.point.z - b.point.z);
+
+      for (const item of sortedPlaces) {
+        const { place, index, point } = item;
+
+        const active = state.activePlace?.id === place.id;
+        const favorite = state.favorites.has(place.id);
+
+        const pulse =
+          1 + Math.sin(time * 0.0025 + index * 0.7) * 0.08;
+
+        const baseSize =
+          (active ? 7.5 : 5.2) *
+          point.scale *
+          pulse;
+
+        const color =
+          favorite
+            ? "#ffc46b"
+            : place.type === "research"
+              ? "#79d7ff"
+              : place.color || "#ff6b3d";
+
+        context.save();
+
+        context.globalAlpha = clamp(point.z * 1.35, 0.2, 1);
+
+        context.strokeStyle = color;
+        context.lineWidth = active ? 1.6 : 1;
+
+        context.beginPath();
+        context.moveTo(point.x, point.y);
+        context.lineTo(point.x, point.y - 14 * point.scale);
+        context.stroke();
+
+        const glow = context.createRadialGradient(
+          point.x,
+          point.y - 15 * point.scale,
+          0,
+          point.x,
+          point.y - 15 * point.scale,
+          26 * point.scale
+        );
+
+        glow.addColorStop(0, color);
+        glow.addColorStop(0.18, color + "70");
+        glow.addColorStop(1, color + "00");
+
+        context.fillStyle = glow;
+        context.beginPath();
+        context.arc(
+          point.x,
+          point.y - 15 * point.scale,
+          26 * point.scale,
+          0,
+          Math.PI * 2
+        );
+        context.fill();
+
+        context.fillStyle = color;
+        context.beginPath();
+        context.arc(
+          point.x,
+          point.y - 15 * point.scale,
+          baseSize,
+          0,
+          Math.PI * 2
+        );
+        context.fill();
+
+        context.fillStyle = "#fff";
+        context.globalAlpha *= 0.9;
+        context.beginPath();
+        context.arc(
+          point.x - 1.2,
+          point.y - 16.3 * point.scale,
+          Math.max(1, baseSize * 0.25),
+          0,
+          Math.PI * 2
+        );
+        context.fill();
+
+        if (active || point.z > 0.78) {
+          context.globalAlpha = clamp(point.z, 0.3, 1);
+          context.font = `${active ? 700 : 600} 10px Inter, sans-serif`;
+          context.fillStyle = "rgba(244, 242, 237, 0.9)";
+          context.textAlign = "center";
+          context.fillText(
+            place.city.toUpperCase(),
+            point.x,
+            point.y - 32 * point.scale
+          );
+        }
+
+        context.restore();
+
+        state.pinHitAreas.push({
+          place,
+          x: point.x,
+          y: point.y - 15 * point.scale,
+          radius: Math.max(16, baseSize + 10)
+        });
+      }
+    }
+
+    function drawGlobe(time) {
+      context.clearRect(0, 0, state.width, state.height);
+
+      drawAtmosphere();
+      drawOcean();
+      drawGraticules();
+      drawLandmasses();
+      drawPins(time);
+    }
+
+    /* ================================================================
+       ANIMACIÓN
+       ================================================================ */
+
+    function animate(time) {
+      if (state.targetRotation !== null) {
+        const rotationDifference =
+          state.targetRotation - state.rotation;
+
+        state.rotation += rotationDifference * 0.065;
+
+        if (Math.abs(rotationDifference) < 0.001) {
+          state.rotation = state.targetRotation;
+          state.targetRotation = null;
+        }
+      }
+
+      if (state.targetPitch !== null) {
+        const pitchDifference =
+          state.targetPitch - state.pitch;
+
+        state.pitch += pitchDifference * 0.065;
+
+        if (Math.abs(pitchDifference) < 0.001) {
+          state.pitch = state.targetPitch;
+          state.targetPitch = null;
+        }
+      }
+
+      if (!state.pointerDown) {
+        state.rotation += state.velocityX;
+        state.pitch += state.velocityY;
+
+        state.velocityX *= 0.94;
+        state.velocityY *= 0.9;
+
+        if (
+          state.autoRotate &&
+          state.targetRotation === null &&
+          Math.abs(state.velocityX) < 0.001
+        ) {
+          state.rotation += 0.0007;
+        }
+      }
+
+      state.pitch = clamp(state.pitch, -1.05, 1.05);
+
+      drawGlobe(time);
+
+      window.requestAnimationFrame(animate);
+    }
+
+    /* ================================================================
+       INTERACCIÓN CON EL GLOBO
+       ================================================================ */
+
+    canvas.addEventListener("pointerdown", event => {
+      state.pointerDown = true;
+      state.pointerMoved = false;
+      state.pointerId = event.pointerId;
+      state.previousX = event.clientX;
+      state.previousY = event.clientY;
+      state.pointerX = event.clientX;
+      state.pointerY = event.clientY;
+      state.velocityX = 0;
+      state.velocityY = 0;
+
+      canvas.setPointerCapture(event.pointerId);
+      canvas.classList.add("is-dragging");
+    });
+
+    canvas.addEventListener("pointermove", event => {
+      state.pointerX = event.clientX;
+      state.pointerY = event.clientY;
+
+      const coordinates = inverseProject(
+        event.clientX,
+        event.clientY
+      );
+
+      if (coordinates) {
+        coordinateReadout.textContent =
+          formatCoordinates(coordinates.lat, coordinates.lon);
+      }
+
+      if (!state.pointerDown) {
+        updateCanvasCursor(event.clientX, event.clientY);
+        return;
+      }
+
+      const differenceX = event.clientX - state.previousX;
+      const differenceY = event.clientY - state.previousY;
+
+      if (Math.abs(differenceX) + Math.abs(differenceY) > 2) {
+        state.pointerMoved = true;
+      }
+
+      const sensitivity = 0.006 / state.zoom;
+
+      state.rotation += differenceX * sensitivity;
+      state.pitch += differenceY * sensitivity;
+
+      state.velocityX = differenceX * sensitivity * 0.23;
+      state.velocityY = differenceY * sensitivity * 0.18;
+
+      state.targetRotation = null;
+      state.targetPitch = null;
+
+      state.previousX = event.clientX;
+      state.previousY = event.clientY;
+    });
+
+    canvas.addEventListener("pointerup", event => {
+      if (!state.pointerMoved) {
+        selectPinAt(event.clientX, event.clientY);
+      }
+
+      state.pointerDown = false;
+      state.pointerId = null;
+
+      canvas.classList.remove("is-dragging");
+
+      if (canvas.hasPointerCapture(event.pointerId)) {
+        canvas.releasePointerCapture(event.pointerId);
+      }
+    });
+
+    canvas.addEventListener("pointercancel", () => {
+      state.pointerDown = false;
+      state.pointerId = null;
+      canvas.classList.remove("is-dragging");
+    });
+
+    canvas.addEventListener(
+      "wheel",
+      event => {
+        event.preventDefault();
+
+        const direction = event.deltaY > 0 ? -1 : 1;
+
+        state.zoom = clamp(
+          state.zoom + direction * 0.085,
+          0.7,
+          1.55
+        );
+      },
+      { passive: false }
+    );
+
+    function updateCanvasCursor(clientX, clientY) {
+      const hit = state.pinHitAreas.some(area =>
+        Math.hypot(
+          clientX - area.x,
+          clientY - area.y
+        ) <= area.radius
+      );
+
+      canvas.style.cursor = hit ? "pointer" : "grab";
+    }
+
+    function selectPinAt(clientX, clientY) {
+      const hit = [...state.pinHitAreas]
+        .reverse()
+        .find(area =>
+          Math.hypot(
+            clientX - area.x,
+            clientY - area.y
+          ) <= area.radius
+        );
+
+      if (hit) {
+        openPlace(hit.place, true);
+      }
+    }
+
+    function focusPlace(place) {
+      state.targetRotation = -radians(place.lon);
+      state.targetPitch = clamp(radians(place.lat), -0.82, 0.82);
+      state.zoom = Math.max(state.zoom, 1.08);
+      state.velocityX = 0;
+      state.velocityY = 0;
+    }
+
+    function resetGlobe() {
+      state.targetRotation = -0.35;
+      state.targetPitch = 0.12;
+      state.zoom = 1;
+      state.velocityX = 0;
+      state.velocityY = 0;
+
+      closeDetail();
+      showToast("Vista global restablecida");
+    }
+
+    function formatCoordinates(lat, lon) {
+      const latitudeDirection = lat >= 0 ? "N" : "S";
+      const longitudeDirection = lon >= 0 ? "E" : "W";
+
+      return (
+        `${Math.abs(lat).toFixed(4)}° ${latitudeDirection} · ` +
+        `${Math.abs(lon).toFixed(4)}° ${longitudeDirection}`
+      );
+    }
+
+    /* ================================================================
+       FICHAS DE DESTINO
+       ================================================================ */
+
+    function openPlace(place, moveGlobe = true) {
+      state.activePlace = place;
+
+      if (moveGlobe) {
+        focusPlace(place);
+      }
+
+      const index = DESTINATIONS.findIndex(item => item.id === place.id);
+
+      detailHero.style.setProperty(
+        "--place-color",
+        place.color || "#ff6b3d"
+      );
+
+      detailNumber.textContent =
+        `Entrada ${String(index + 1).padStart(2, "0")}`;
+
+      detailTitle.textContent = place.title;
+      detailLocation.textContent =
+        `${place.city} · ${place.country}`;
+
+      detailType.textContent =
+        place.type === "research"
+          ? "Investigación"
+          : "Viaje";
+
+      detailDate.textContent = place.date;
+      detailReading.textContent = place.readingTime;
+      detailLead.textContent = place.lead;
+      detailDescription.textContent = place.description;
+
+      detailTags.innerHTML = place.tags
+        .map(tag => `<span class="tag">${escapeHTML(tag)}</span>`)
+        .join("");
+
+      detailLink.href = place.url;
+
+      updateFavoriteButton();
+
+      detailPanel.classList.add("is-open");
+      detailPanel.setAttribute("aria-hidden", "false");
+
+      state.visited.add(place.id);
+      saveSet("world:visited", state.visited);
+
+      updateStats();
+
+      history.replaceState(
+        null,
+        "",
+        `#${encodeURIComponent(place.id)}`
+      );
+    }
+
+    function closeDetail() {
+      state.activePlace = null;
+
+      detailPanel.classList.remove("is-open");
+      detailPanel.setAttribute("aria-hidden", "true");
+
+      if (location.hash) {
+        history.replaceState(
+          null,
+          "",
+          `${location.pathname}${location.search}`
+        );
+      }
+    }
+
+    function toggleFavorite() {
+      const place = state.activePlace;
+
+      if (!place) {
+        return;
+      }
+
+      if (state.favorites.has(place.id)) {
+        state.favorites.delete(place.id);
+        showToast("Eliminado de favoritos");
+      } else {
+        state.favorites.add(place.id);
+        showToast("Guardado en favoritos");
+      }
+
+      saveSet("world:favorites", state.favorites);
+
+      updateFavoriteButton();
+      renderPlaceList();
+      updateStats();
+    }
+
+    function updateFavoriteButton() {
+      if (!state.activePlace) {
+        favoriteButton.textContent = "♡";
+        return;
+      }
+
+      const favorite =
+        state.favorites.has(state.activePlace.id);
+
+      favoriteButton.textContent = favorite ? "♥" : "♡";
+      favoriteButton.style.color =
+        favorite ? "var(--accent-soft)" : "";
+
+      favoriteButton.setAttribute(
+        "aria-label",
+        favorite
+          ? "Eliminar de favoritos"
+          : "Añadir a favoritos"
+      );
+    }
+
+    async function shareActivePlace() {
+      if (!state.activePlace) {
+        return;
+      }
+
+      const url = new URL(location.href);
+      url.hash = state.activePlace.id;
+
+      const shareData = {
+        title: `${state.activePlace.title} — World`,
+        text: state.activePlace.lead,
+        url: url.toString()
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(url.toString());
+          showToast("Enlace copiado");
+        }
+      } catch (error) {
+        if (error?.name !== "AbortError") {
+          showToast("No se pudo compartir el enlace");
+        }
+      }
+    }
+
+    /* ================================================================
+       LISTADO Y FILTROS
+       ================================================================ */
+
+    function getFilteredPlaces() {
+      if (state.activeFilter === "all") {
+        return DESTINATIONS;
+      }
+
+      if (state.activeFilter === "favorite") {
+        return DESTINATIONS.filter(place =>
+          state.favorites.has(place.id)
+        );
+      }
+
+      return DESTINATIONS.filter(place =>
+        place.type === state.activeFilter
+      );
+    }
+
+    function renderPlaceList() {
+      const places = getFilteredPlaces();
+
+      if (!places.length) {
+        placeList.innerHTML = `
+          <div class="empty-results">
+            Todavía no hay destinos en esta categoría.
+          </div>
+        `;
+        return;
+      }
+
+      placeList.innerHTML = places
+        .map(place => {
+          const index =
+            DESTINATIONS.findIndex(item => item.id === place.id) + 1;
+
+          const favorite =
+            state.favorites.has(place.id) ? " · Favorito" : "";
+
+          return `
+            <button
+              class="place-card"
+              data-place-id="${escapeHTML(place.id)}"
+            >
+              <span class="place-number">
+                ${String(index).padStart(2, "0")}
+              </span>
+
+              <span class="place-card-copy">
+                <strong>${escapeHTML(place.title)}</strong>
+                <span>
+                  ${escapeHTML(place.country)}
+                  ·
+                  ${place.type === "research" ? "Investigación" : "Viaje"}
+                  ${favorite}
+                </span>
+              </span>
+
+              <span class="place-arrow">→</span>
+            </button>
+          `;
+        })
+        .join("");
+
+      $$(".place-card", placeList).forEach(button => {
+        button.addEventListener("click", () => {
+          const place = DESTINATIONS.find(
+            item => item.id === button.dataset.placeId
+          );
+
+          if (place) {
+            closeDrawer();
+            openPlace(place, true);
+          }
+        });
+      });
+    }
+
+    function openDrawer() {
+      renderPlaceList();
+
+      placesDrawer.classList.add("is-open");
+      placesDrawer.setAttribute("aria-hidden", "false");
+      modalBackdrop.classList.add("is-visible");
+    }
+
+    function closeDrawer() {
+      placesDrawer.classList.remove("is-open");
+      placesDrawer.setAttribute("aria-hidden", "true");
+
+      if (!helpModal.classList.contains("is-open")) {
+        modalBackdrop.classList.remove("is-visible");
+      }
+    }
+
+    function updateStats() {
+      const countries =
+        new Set(DESTINATIONS.map(place => place.country));
+
+      $("#countryCount").textContent = countries.size;
+      $("#storyCount").textContent = DESTINATIONS.length;
+      $("#visitedCount").textContent = state.visited.size;
+    }
+
+    $$(".filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        state.activeFilter = button.dataset.filter;
+
+        $$(".filter-button").forEach(item =>
+          item.classList.toggle(
+            "is-active",
+            item === button
+          )
+        );
+
+        renderPlaceList();
+      });
+    });
+
+    /* ================================================================
+       BUSCADOR
+       ================================================================ */
+
+    function searchPlaces(query) {
+      const normalizedQuery = normalizeText(query.trim());
+
+      if (!normalizedQuery) {
+        return [];
+      }
+
+      return DESTINATIONS
+        .map(place => {
+          const title = normalizeText(place.title);
+          const city = normalizeText(place.city);
+          const country = normalizeText(place.country);
+          const continent = normalizeText(place.continent);
+          const tags = normalizeText(place.tags.join(" "));
+          const description = normalizeText(place.description);
+
+          let score = 0;
+
+          if (title.startsWith(normalizedQuery)) score += 100;
+          if (city.startsWith(normalizedQuery)) score += 90;
+          if (country.startsWith(normalizedQuery)) score += 85;
+          if (title.includes(normalizedQuery)) score += 55;
+          if (city.includes(normalizedQuery)) score += 50;
+          if (country.includes(normalizedQuery)) score += 48;
+          if (continent.includes(normalizedQuery)) score += 30;
+          if (tags.includes(normalizedQuery)) score += 25;
+          if (description.includes(normalizedQuery)) score += 10;
+
+          return { place, score };
+        })
+        .filter(result => result.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 7)
+        .map(result => result.place);
+    }
+
+    function renderSearchResults() {
+      const query = searchInput.value;
+      const results = searchPlaces(query);
+
+      state.selectedSearchIndex = -1;
+
+      if (!query.trim()) {
+        searchResults.classList.add("hidden");
+        return;
+      }
+
+      searchResults.classList.remove("hidden");
+
+      if (!results.length) {
+        searchResults.innerHTML = `
+          <div class="empty-results">
+            No encuentro ese lugar todavía.
+          </div>
+        `;
+        return;
+      }
+
+      searchResults.innerHTML = results
+        .map((place, index) => `
+          <button
+            class="search-result"
+            role="option"
+            data-result-index="${index}"
+            data-place-id="${escapeHTML(place.id)}"
+          >
+            <span class="result-index">
+              ${String(
+                DESTINATIONS.findIndex(item => item.id === place.id) + 1
+              ).padStart(2, "0")}
+            </span>
+
+            <span class="result-copy">
+              <strong>${escapeHTML(place.title)}</strong>
+              <small>
+                ${escapeHTML(place.city)}
+                ·
+                ${escapeHTML(place.country)}
+              </small>
+            </span>
+
+            <span class="result-type">
+              ${place.type === "research" ? "Investigar" : "Viajar"}
+            </span>
+          </button>
+        `)
+        .join("");
+
+      $$(".search-result", searchResults).forEach(button => {
+        button.addEventListener("click", () => {
+          chooseSearchPlace(button.dataset.placeId);
+        });
+      });
+    }
+
+    function chooseSearchPlace(placeId) {
+      const place = DESTINATIONS.find(item => item.id === placeId);
+
+      if (!place) {
+        return;
+      }
+
+      searchInput.value = "";
+      searchResults.classList.add("hidden");
+
+      openPlace(place, true);
+    }
+
+    function moveSearchSelection(direction) {
+      const results = $$(".search-result", searchResults);
+
+      if (!results.length) {
+        return;
+      }
+
+      state.selectedSearchIndex =
+        (
+          state.selectedSearchIndex +
+          direction +
+          results.length
+        ) % results.length;
+
+      results.forEach((result, index) => {
+        result.classList.toggle(
+          "is-selected",
+          index === state.selectedSearchIndex
+        );
+      });
+
+      results[state.selectedSearchIndex].scrollIntoView({
+        block: "nearest"
+      });
+    }
+
+    searchInput.addEventListener("input", renderSearchResults);
+
+    searchInput.addEventListener("keydown", event => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        moveSearchSelection(1);
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        moveSearchSelection(-1);
+      }
+
+      if (event.key === "Enter") {
+        const selected =
+          $$(".search-result", searchResults)[
+            state.selectedSearchIndex
+          ] || $(".search-result", searchResults);
+
+        if (selected) {
+          event.preventDefault();
+          chooseSearchPlace(selected.dataset.placeId);
+        }
+      }
+
+      if (event.key === "Escape") {
+        searchResults.classList.add("hidden");
+        searchInput.blur();
+      }
+    });
+
+    document.addEventListener("pointerdown", event => {
+      if (!event.target.closest(".search-wrap")) {
+        searchResults.classList.add("hidden");
+      }
+    });
+
+    /* ================================================================
+       AYUDA
+       ================================================================ */
+
+    function openHelp() {
+      helpModal.classList.add("is-open");
+      modalBackdrop.classList.add("is-visible");
+    }
+
+    function closeHelp() {
+      helpModal.classList.remove("is-open");
+
+      if (!placesDrawer.classList.contains("is-open")) {
+        modalBackdrop.classList.remove("is-visible");
+      }
+    }
+
+    /* ================================================================
+       EVENTOS DE INTERFAZ
+       ================================================================ */
+
+    worldTrigger.addEventListener("click", () => {
+      if (state.introOpened) {
+        return;
+      }
+
+      state.introOpened = true;
+
+      intro.classList.add("is-leaving");
+      atlas.classList.add("is-visible");
+
+      window.setTimeout(() => {
+        intro.remove();
+      }, 1100);
+    });
+
+    $("#placesButton").addEventListener("click", openDrawer);
+    $("#closeDrawerButton").addEventListener("click", closeDrawer);
+
+    $("#closeDetailButton").addEventListener("click", closeDetail);
+
+    favoriteButton.addEventListener("click", toggleFavorite);
+    $("#shareButton").addEventListener("click", shareActivePlace);
+
+    $("#helpButton").addEventListener("click", openHelp);
+    $("#closeHelpButton").addEventListener("click", closeHelp);
+
+    modalBackdrop.addEventListener("click", () => {
+      closeDrawer();
+      closeHelp();
+    });
+
+    $("#zoomInButton").addEventListener("click", () => {
+      state.zoom = clamp(state.zoom + 0.12, 0.7, 1.55);
+    });
+
+    $("#zoomOutButton").addEventListener("click", () => {
+      state.zoom = clamp(state.zoom - 0.12, 0.7, 1.55);
+    });
+
+    $("#resetButton").addEventListener("click", resetGlobe);
+
+    $("#rotationButton").addEventListener("click", event => {
+      state.autoRotate = !state.autoRotate;
+      event.currentTarget.textContent =
+        state.autoRotate ? "↻" : "Ⅱ";
+
+      showToast(
+        state.autoRotate
+          ? "Rotación automática activada"
+          : "Rotación automática pausada"
+      );
+    });
+
+    window.addEventListener("keydown", event => {
+      const targetIsInput =
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement;
+
+      if (
+        (event.metaKey || event.ctrlKey) &&
+        event.key.toLowerCase() === "k"
+      ) {
+        event.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+        return;
+      }
+
+      if (targetIsInput) {
+        return;
+      }
+
+      if (event.key.toLowerCase() === "l") {
+        openDrawer();
+      }
+
+      if (event.key.toLowerCase() === "r") {
+        state.autoRotate = !state.autoRotate;
+        showToast(
+          state.autoRotate
+            ? "Rotación automática activada"
+            : "Rotación automática pausada"
+        );
+      }
+
+      if (event.key === "Escape") {
+        closeDrawer();
+        closeDetail();
+        closeHelp();
+        searchResults.classList.add("hidden");
+      }
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+
+    /* ================================================================
+       ARRANQUE
+       ================================================================ */
+
+    function initialize() {
+      resizeCanvas();
+      renderPlaceList();
+      updateStats();
+
+      const placeFromHash = decodeURIComponent(
+        location.hash.replace("#", "")
+      );
+
+      if (placeFromHash) {
+        const place = DESTINATIONS.find(
+          item => item.id === placeFromHash
+        );
+
+        if (place) {
+          state.introOpened = true;
+          intro.remove();
+          atlas.classList.add("is-visible");
+
+          window.setTimeout(() => {
+            openPlace(place, true);
+          }, 300);
+        }
+      }
+
+      window.requestAnimationFrame(animate);
+    }
+
+    initialize();
+  </script>
+</body>
+</html>
